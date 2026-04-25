@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Research domain, literature survey, methodology, and technology stack for AI-Based Urine Microscopy Analysis.">
+  <title>Domain — UrinoAI Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🔬</div>
+        UrinoAI
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="domain.html" class="active">Domain</a>
+        <a href="milestones.html">Milestones</a>
+        <a href="documents.html">Documents</a>
+        <a href="presentations.html">Presentations</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <span class="section-label">Research Domain</span>
+      <h1>Domain & Methodology</h1>
+      <p>An in-depth look at our research foundation, identified gaps, objectives, and the technical approach behind UrinoAI.</p>
+    </div>
+  </header>
+
+  <!-- ===== LITERATURE SURVEY ===== -->
+  <section id="literature">
+    <div class="container">
+      <div class="content-block">
+        <h3>📖 Literature Survey</h3>
+        <p>Extensive review of existing work in automated urinalysis and medical image classification revealed several key insights:</p>
+        <ul>
+          <li>Traditional urine sediment analysis relies on manual microscopy by trained pathologists, which is subjective and time-intensive (Fogazzi et al., 2020).</li>
+          <li>Recent studies have applied CNNs such as ResNet, VGG, and Inception for medical image classification with promising results in pathology (Litjens et al., 2017).</li>
+          <li>YOLO-based object detection has been explored for cell detection in blood smear images, demonstrating real-time capability (Alam & Islam, 2019).</li>
+          <li>Transfer learning from ImageNet pre-trained models significantly improves performance on small medical imaging datasets (Raghu et al., 2019).</li>
+          <li>Existing commercial systems (e.g., Sysmex UF-5000) are expensive and inaccessible for low-resource healthcare facilities.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH GAP ===== -->
+  <section class="section-alt" id="gap">
+    <div class="container">
+      <div class="content-block">
+        <h3>🔍 Research Gap</h3>
+        <p>Despite advances in AI-based medical imaging, significant gaps remain in urine microscopy analysis:</p>
+        <ul>
+          <li>Most existing solutions focus on a limited set of particle types (typically RBC and WBC only).</li>
+          <li>Lack of publicly available, well-annotated urine sediment datasets for comprehensive model training.</li>
+          <li>Few systems address the full pipeline from image capture to diagnostic report generation.</li>
+          <li>Existing commercial solutions are prohibitively expensive for developing-country hospitals and clinics.</li>
+          <li>Limited research on real-time detection and quantification of all clinically relevant sediment particles in a single system.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH PROBLEM ===== -->
+  <section id="problem">
+    <div class="container">
+      <div class="content-block">
+        <h3>❓ Research Problem</h3>
+        <p>How can deep learning and computer vision be effectively applied to automate the detection, classification, and quantification of diverse urine sediment particles from microscopy images, achieving laboratory-grade accuracy while remaining cost-effective and accessible?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== OBJECTIVES ===== -->
+  <section class="section-alt" id="objectives">
+    <div class="container">
+      <span class="section-label">Research Objectives</span>
+      <h2 class="section-title">Project Objectives</h2>
+      <p class="section-subtitle" style="margin-bottom:2.5rem;">Our research aims to achieve the following specific outcomes.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">1️⃣</div>
+          <h3>Multi-Class Particle Classification</h3>
+          <p>Develop a CNN-based classifier capable of identifying 12+ urine sediment particle categories including RBC, WBC, epithelial cells, casts, crystals, and bacteria.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">2️⃣</div>
+          <h3>Real-Time Object Detection</h3>
+          <p>Implement a YOLO-based detection pipeline to localize and identify individual particles within full microscopy slide images in under 3 seconds.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">3️⃣</div>
+          <h3>Automated Quantification</h3>
+          <p>Build an automated cell counting and concentration estimation module that produces clinically meaningful particle counts per high-power field (HPF).</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">4️⃣</div>
+          <h3>Accessible Web Interface</h3>
+          <p>Design a user-friendly web-based application enabling healthcare workers to upload microscopy images and receive structured diagnostic reports.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METHODOLOGY ===== -->
+  <section id="methodology">
+    <div class="container">
+      <div class="content-block">
+        <h3>⚙️ Methodology</h3>
+        <p>Our research follows a systematic, iterative approach combining data engineering, model development, and system integration:</p>
+        <ul>
+          <li><strong>Data Collection:</strong> Curating urine sediment microscopy images from hospital laboratories and public datasets, with expert annotation.</li>
+          <li><strong>Data Preprocessing:</strong> Applying image augmentation (rotation, flipping, brightness/contrast adjustment), noise reduction, and normalization.</li>
+          <li><strong>Model Architecture:</strong> Evaluating multiple CNN architectures (ResNet-50, EfficientNet, MobileNet) for classification; YOLOv8 for detection.</li>
+          <li><strong>Transfer Learning:</strong> Fine-tuning pre-trained ImageNet weights on our domain-specific dataset to overcome limited sample sizes.</li>
+          <li><strong>Training & Validation:</strong> K-fold cross-validation with stratified splits to ensure robust performance across all particle classes.</li>
+          <li><strong>Evaluation:</strong> Using accuracy, precision, recall, F1-score, and mAP as primary performance metrics.</li>
+          <li><strong>Integration:</strong> Deploying the model behind a Flask/FastAPI backend with a responsive web frontend for end-to-end analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TECHNOLOGIES ===== -->
+  <section class="section-alt" id="technologies">
+    <div class="container">
+      <span class="section-label">Tech Stack</span>
+      <h2 class="section-title">Technologies Used</h2>
+      <p class="section-subtitle" style="margin-bottom:2.5rem;">Core AI/ML technologies and tools powering UrinoAI.</p>
+
+      <div class="tech-grid">
+        <div class="tech-tag"><span>🐍</span> Python 3.10+</div>
+        <div class="tech-tag"><span>🔥</span> PyTorch</div>
+        <div class="tech-tag"><span>🧠</span> TensorFlow / Keras</div>
+        <div class="tech-tag"><span>🎯</span> YOLOv8 (Ultralytics)</div>
+        <div class="tech-tag"><span>👁️</span> OpenCV</div>
+        <div class="tech-tag"><span>📊</span> scikit-learn</div>
+        <div class="tech-tag"><span>📈</span> Matplotlib / Seaborn</div>
+        <div class="tech-tag"><span>📓</span> Jupyter Notebooks</div>
+        <div class="tech-tag"><span>🖼️</span> PIL / Pillow</div>
+        <div class="tech-tag"><span>⚡</span> FastAPI</div>
+        <div class="tech-tag"><span>🐳</span> Docker</div>
+        <div class="tech-tag"><span>☁️</span> Google Colab / AWS</div>
+        <div class="tech-tag"><span>📦</span> NumPy / Pandas</div>
+        <div class="tech-tag"><span>🔄</span> Albumentations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2024/25 UrinoAI Research Team — Sri Lanka Institute of Information Technology</p>
+        <div class="footer-links">
+          <a href="domain.html">Research</a>
+          <a href="documents.html">Documents</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

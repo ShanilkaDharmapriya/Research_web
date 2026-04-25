@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Based Urine Microscopy Analysis for Disease Detection — a university research project leveraging deep learning for automated medical diagnostics.">
+  <title>UrinoAI — AI-Based Urine Microscopy Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">🔬</div>
+        UrinoAI
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="domain.html">Domain</a>
+        <a href="milestones.html">Milestones</a>
+        <a href="documents.html">Documents</a>
+        <a href="presentations.html">Presentations</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-badge">🧬 University Research Project 2024/25</div>
+      <h1>AI-Based Urine Microscopy<br>Analysis for Disease Detection</h1>
+      <p>Leveraging deep learning and computer vision to automate urine sediment microscopy analysis, enabling faster, more accurate, and accessible disease screening.</p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn btn-primary">🧪 Try Demo</a>
+        <a href="documents.html" class="btn btn-outline">📄 View Documents</a>
+        <a href="domain.html" class="btn btn-outline">📚 Explore Research</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEM + SOLUTION ===== -->
+  <section class="section-alt" id="overview">
+    <div class="container">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">⚠️</div>
+          <h3>The Problem</h3>
+          <p>Traditional urine sediment analysis is manual, time-consuming, and prone to human error. It relies heavily on trained laboratory personnel, making it inconsistent and inaccessible in resource-limited settings.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💡</div>
+          <h3>Our Solution</h3>
+          <p>We propose an AI-powered system that uses convolutional neural networks (CNNs) and object detection models to automatically classify urine sediment particles, providing rapid and reliable diagnostic support.</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number">95%+</div>
+          <div class="stat-label">Target Accuracy</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Particle Classes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">&lt;3s</div>
+          <div class="stat-label">Analysis Time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Team Members</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KEY FEATURES ===== -->
+  <section id="features">
+    <div class="container">
+      <span class="section-label">Key Features</span>
+      <h2 class="section-title">What Our System Offers</h2>
+      <p class="section-subtitle" style="margin-bottom:2.5rem;">A comprehensive AI pipeline from image input to diagnostic insight.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">🖼️</div>
+          <h3>Image Preprocessing</h3>
+          <p>Automated noise reduction, contrast enhancement, and normalization of microscopy images for optimal model input.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <h3>Deep Learning Classification</h3>
+          <p>State-of-the-art CNN architectures trained to classify urine sediment particles across multiple diagnostic categories.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Object Detection</h3>
+          <p>Real-time localization and identification of individual particles within microscopy slides using YOLO-based detection.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Quantitative Analysis</h3>
+          <p>Automated cell counting and concentration estimation to support clinicians in diagnostic decision-making.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>User-Friendly Interface</h3>
+          <p>Clean web-based interface allowing lab technicians to upload images and receive results in seconds.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Report Generation</h3>
+          <p>Structured diagnostic reports with particle counts, classifications, and confidence scores for each analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SYSTEM DEMO ===== -->
+  <section class="section-alt" id="demo">
+    <div class="container">
+      <span class="section-label">System Demonstration</span>
+      <h2 class="section-title">Try the Analysis System</h2>
+      <p class="section-subtitle" style="margin-bottom:2.5rem;">Upload a urine microscopy image to see a simulated AI analysis result.</p>
+
+      <div class="demo-container">
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📤</div>
+          <h3>Upload Microscopy Image</h3>
+          <p>Drag & drop or click to select a urine sediment microscopy image (JPG, PNG)</p>
+          <input type="file" id="fileInput" accept="image/*" style="display:none;">
+        </div>
+
+        <div class="demo-preview" id="demoPreview">
+          <img id="previewImage" src="" alt="Uploaded microscopy image">
+          <div class="result-card">
+            <h4 style="margin-bottom:16px;">🔍 Analysis Results (Simulated)</h4>
+            <div class="result-row">
+              <span class="result-label">Red Blood Cells (RBC)</span>
+              <div>
+                <span class="result-value" style="color:var(--error);">12 /HPF — Elevated</span>
+                <div class="confidence-bar"><div class="confidence-fill" style="width:88%"></div></div>
+              </div>
+            </div>
+            <div class="result-row">
+              <span class="result-label">White Blood Cells (WBC)</span>
+              <div>
+                <span class="result-value" style="color:var(--warning);">8 /HPF — Borderline</span>
+                <div class="confidence-bar"><div class="confidence-fill" style="width:72%"></div></div>
+              </div>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Epithelial Cells</span>
+              <div>
+                <span class="result-value" style="color:var(--success);">3 /HPF — Normal</span>
+                <div class="confidence-bar"><div class="confidence-fill" style="width:94%"></div></div>
+              </div>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Crystals (Calcium Oxalate)</span>
+              <div>
+                <span class="result-value" style="color:var(--error);">Detected</span>
+                <div class="confidence-bar"><div class="confidence-fill" style="width:91%"></div></div>
+              </div>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Bacteria</span>
+              <div>
+                <span class="result-value" style="color:var(--success);">Not Detected</span>
+                <div class="confidence-bar"><div class="confidence-fill" style="width:97%"></div></div>
+              </div>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Overall Confidence</span>
+              <div>
+                <span class="result-value" style="color:var(--primary);">92.4%</span>
+                <div class="confidence-bar"><div class="confidence-fill" style="width:92%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2024/25 UrinoAI Research Team — Sri Lanka Institute of Information Technology</p>
+        <div class="footer-links">
+          <a href="domain.html">Research</a>
+          <a href="documents.html">Documents</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
