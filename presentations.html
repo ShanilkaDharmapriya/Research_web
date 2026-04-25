@@ -35,53 +35,90 @@
     </div>
   </header>
 
-  <section>
+  <section class="fade-in-section">
     <div class="container">
-      <div class="grid-2">
+      <div class="section-header-actions">
+        <div>
+          <h2 class="section-title">Milestone Presentations</h2>
+          <p class="section-subtitle">Slide decks presented at each project evaluation milestone.</p>
+        </div>
+        <button class="btn btn-outline" onclick="alert('Preparing presentations archive...')">
+          📥 Download All (.zip)
+        </button>
+      </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Proposal Presentation</h3>
-          <p>Initial project proposal covering problem statement, objectives, literature review, and planned methodology.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">February 2024 • 22 slides</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-primary">📥 Download PPTX</a>
-            <a href="#" class="btn btn-sm btn-outline">👁️ View PDF</a>
+      <div class="resource-grid">
+        <!-- Card 1 -->
+        <div class="resource-card">
+          <div class="resource-icon-wrapper ppt">📽️</div>
+          <h3 class="resource-title">Proposal Presentation</h3>
+          <div class="resource-badges">
+            <span class="resource-badge badge-ppt">PPTX</span>
+            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
           </div>
+          <div class="resource-meta">
+            <div class="meta-item"><span class="meta-icon">📅</span> September 2025</div>
+            <div class="meta-item"><span class="meta-icon">👥</span> Group</div>
+            <div class="meta-item"><span class="meta-icon">💾</span> 4.5 MB</div>
+          </div>
+          <a href="/assets/presentations/proposal-presentation.pptx" class="resource-download" download>
+            📥 Download File
+          </a>
         </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Progress Presentation 1</h3>
-          <p>PP1 slides covering dataset preparation, preprocessing pipeline, initial model experiments, and architecture comparisons.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">May 2024 • 28 slides</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-primary">📥 Download PPTX</a>
-            <a href="#" class="btn btn-sm btn-outline">👁️ View PDF</a>
+        <!-- Card 2 -->
+        <div class="resource-card">
+          <div class="resource-icon-wrapper ppt">📊</div>
+          <h3 class="resource-title">Progress Presentation I</h3>
+          <div class="resource-badges">
+            <span class="resource-badge badge-ppt">PPTX</span>
+            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
           </div>
+          <div class="resource-meta">
+            <div class="meta-item"><span class="meta-icon">📅</span> December 2025</div>
+            <div class="meta-item"><span class="meta-icon">👥</span> Group</div>
+            <div class="meta-item"><span class="meta-icon">💾</span> 6.2 MB</div>
+          </div>
+          <a href="/assets/presentations/pp1.pptx" class="resource-download" download>
+            📥 Download File
+          </a>
         </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Progress Presentation 2</h3>
-          <p>PP2 slides with trained model results, detection benchmarks, comparative analysis, and system integration progress.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">September 2024 • 34 slides</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-primary">📥 Download PPTX</a>
-            <a href="#" class="btn btn-sm btn-outline">👁️ View PDF</a>
+        <!-- Card 3 -->
+        <div class="resource-card">
+          <div class="resource-icon-wrapper ppt">📈</div>
+          <h3 class="resource-title">Progress Presentation II</h3>
+          <div class="resource-badges">
+            <span class="resource-badge badge-ppt">PPTX</span>
+            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
           </div>
+          <div class="resource-meta">
+            <div class="meta-item"><span class="meta-icon">📅</span> March 2026</div>
+            <div class="meta-item"><span class="meta-icon">👥</span> Group</div>
+            <div class="meta-item"><span class="meta-icon">💾</span> 8.1 MB</div>
+          </div>
+          <a href="/assets/presentations/pp2.pptx" class="resource-download" download>
+            📥 Download File
+          </a>
         </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Final Presentation</h3>
-          <p>Complete project presentation covering full system demo, results, evaluation, limitations, and future directions.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">December 2024 • Pending</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-outline" style="opacity:0.5; pointer-events:none;">📥 Coming Soon</a>
+        <!-- Card 4 -->
+        <div class="resource-card">
+          <div class="resource-icon-wrapper ppt">🎯</div>
+          <h3 class="resource-title">Final Presentation</h3>
+          <div class="resource-badges">
+            <span class="resource-badge badge-ppt">PPTX</span>
+            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
           </div>
+          <div class="resource-meta">
+            <div class="meta-item"><span class="meta-icon">📅</span> May 2026</div>
+            <div class="meta-item"><span class="meta-icon">👥</span> Group</div>
+            <div class="meta-item"><span class="meta-icon">💾</span> 12.4 MB</div>
+          </div>
+          <a href="/assets/presentations/final-presentation.pptx" class="resource-download" download>
+            📥 Download File
+          </a>
         </div>
-
       </div>
     </div>
   </section>

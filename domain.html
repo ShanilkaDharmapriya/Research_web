@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Research domain, literature survey, methodology, and technology stack for AI-Based Urine Microscopy Analysis.">
-  <title>Domain — UrinoAI Research</title>
+  <title>Domain — UroAI Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -16,7 +16,7 @@
     <div class="container">
       <a href="index.html" class="nav-logo">
         <div class="logo-icon">🔬</div>
-        UrinoAI
+        UroAI
       </a>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
@@ -33,133 +33,343 @@
     </div>
   </nav>
 
-  <!-- ===== PAGE HEADER ===== -->
-  <header class="page-header">
+  <!-- ===== DOMAIN HEADER ===== -->
+  <header class="domain-header">
     <div class="container">
       <span class="section-label">Research Domain</span>
-      <h1>Domain & Methodology</h1>
-      <p>An in-depth look at our research foundation, identified gaps, objectives, and the technical approach behind UrinoAI.</p>
+      <h1>Research Domain</h1>
+      <p>Comprehensive research methodology and technological framework</p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="domain-tabs-nav" id="domainTabsNav">
+      <button class="domain-tab-btn active" data-tab="literature">Literature Survey</button>
+      <button class="domain-tab-btn" data-tab="gap">Research Gap</button>
+      <button class="domain-tab-btn" data-tab="problem">Research Problem</button>
+      <button class="domain-tab-btn" data-tab="objectives">Research Objectives</button>
+      <button class="domain-tab-btn" data-tab="methodology">Methodology</button>
+      <button class="domain-tab-btn" data-tab="technologies">Technologies Used</button>
     </div>
   </header>
 
-  <!-- ===== LITERATURE SURVEY ===== -->
-  <section id="literature">
+  <!-- ===== DOMAIN CONTENT ===== -->
+  <section class="domain-section">
     <div class="container">
-      <div class="content-block">
-        <h3>📖 Literature Survey</h3>
-        <p>Extensive review of existing work in automated urinalysis and medical image classification revealed several key insights:</p>
-        <ul>
-          <li>Traditional urine sediment analysis relies on manual microscopy by trained pathologists, which is subjective and time-intensive (Fogazzi et al., 2020).</li>
-          <li>Recent studies have applied CNNs such as ResNet, VGG, and Inception for medical image classification with promising results in pathology (Litjens et al., 2017).</li>
-          <li>YOLO-based object detection has been explored for cell detection in blood smear images, demonstrating real-time capability (Alam & Islam, 2019).</li>
-          <li>Transfer learning from ImageNet pre-trained models significantly improves performance on small medical imaging datasets (Raghu et al., 2019).</li>
-          <li>Existing commercial systems (e.g., Sysmex UF-5000) are expensive and inaccessible for low-resource healthcare facilities.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== RESEARCH GAP ===== -->
-  <section class="section-alt" id="gap">
-    <div class="container">
-      <div class="content-block">
-        <h3>🔍 Research Gap</h3>
-        <p>Despite advances in AI-based medical imaging, significant gaps remain in urine microscopy analysis:</p>
-        <ul>
-          <li>Most existing solutions focus on a limited set of particle types (typically RBC and WBC only).</li>
-          <li>Lack of publicly available, well-annotated urine sediment datasets for comprehensive model training.</li>
-          <li>Few systems address the full pipeline from image capture to diagnostic report generation.</li>
-          <li>Existing commercial solutions are prohibitively expensive for developing-country hospitals and clinics.</li>
-          <li>Limited research on real-time detection and quantification of all clinically relevant sediment particles in a single system.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <!-- ========== TAB 1: LITERATURE SURVEY ========== -->
+      <div class="domain-tab-content active" id="tab-literature">
+        <h2 class="domain-tab-title">Literature Survey</h2>
 
-  <!-- ===== RESEARCH PROBLEM ===== -->
-  <section id="problem">
-    <div class="container">
-      <div class="content-block">
-        <h3>❓ Research Problem</h3>
-        <p>How can deep learning and computer vision be effectively applied to automate the detection, classification, and quantification of diverse urine sediment particles from microscopy images, achieving laboratory-grade accuracy while remaining cost-effective and accessible?</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== OBJECTIVES ===== -->
-  <section class="section-alt" id="objectives">
-    <div class="container">
-      <span class="section-label">Research Objectives</span>
-      <h2 class="section-title">Project Objectives</h2>
-      <p class="section-subtitle" style="margin-bottom:2.5rem;">Our research aims to achieve the following specific outcomes.</p>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-icon">1️⃣</div>
-          <h3>Multi-Class Particle Classification</h3>
-          <p>Develop a CNN-based classifier capable of identifying 12+ urine sediment particle categories including RBC, WBC, epithelial cells, casts, crystals, and bacteria.</p>
+        <!-- Highlight Card -->
+        <div class="domain-highlight-card">
+          <div class="hl-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+            Literature Survey
+          </div>
+          <p class="hl-text"><strong>Urine microscopy remains a fundamental diagnostic technique</strong> used to identify urinary tract infections, kidney stones, and renal disorders by analyzing microscopic elements such as red blood cells (RBCs), white blood cells (WBCs), bacteria, crystals, and casts. While it is widely used in clinical laboratories, traditional analysis relies heavily on manual observation, making it time-consuming and subject to variability. Recent advancements in artificial intelligence, particularly deep learning, have demonstrated strong potential in automating medical image analysis and improving diagnostic accuracy.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">2️⃣</div>
-          <h3>Real-Time Object Detection</h3>
-          <p>Implement a YOLO-based detection pipeline to localize and identify individual particles within full microscopy slide images in under 3 seconds.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">3️⃣</div>
-          <h3>Automated Quantification</h3>
-          <p>Build an automated cell counting and concentration estimation module that produces clinically meaningful particle counts per high-power field (HPF).</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">4️⃣</div>
-          <h3>Accessible Web Interface</h3>
-          <p>Design a user-friendly web-based application enabling healthcare workers to upload microscopy images and receive structured diagnostic reports.</p>
+
+        <!-- Info Cards -->
+        <div class="domain-cards-grid">
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+            </div>
+            <div>
+              <h4>Traditional Analysis</h4>
+              <p>Manual urine microscopy requires skilled technicians to visually inspect samples under a microscope. This process is labor-intensive, time-consuming, and prone to inter-observer variability, which can lead to inconsistent diagnostic outcomes.</p>
+            </div>
+          </div>
+
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg>
+            </div>
+            <div>
+              <h4>AI Advancements</h4>
+              <p>Deep learning techniques, especially Convolutional Neural Networks (CNNs), have significantly improved image classification and object detection tasks in healthcare. These models can automatically identify microscopic elements with high accuracy and speed, reducing reliance on manual interpretation.</p>
+            </div>
+          </div>
+
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+            </div>
+            <div>
+              <h4>Current Limitations</h4>
+              <p>Despite these advancements, most existing AI systems focus on detecting individual components rather than providing a comprehensive diagnostic interpretation. Additionally, many models lack integration with clinical data, limiting their practical usability in real-world healthcare environments.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== METHODOLOGY ===== -->
-  <section id="methodology">
-    <div class="container">
-      <div class="content-block">
-        <h3>⚙️ Methodology</h3>
-        <p>Our research follows a systematic, iterative approach combining data engineering, model development, and system integration:</p>
-        <ul>
-          <li><strong>Data Collection:</strong> Curating urine sediment microscopy images from hospital laboratories and public datasets, with expert annotation.</li>
-          <li><strong>Data Preprocessing:</strong> Applying image augmentation (rotation, flipping, brightness/contrast adjustment), noise reduction, and normalization.</li>
-          <li><strong>Model Architecture:</strong> Evaluating multiple CNN architectures (ResNet-50, EfficientNet, MobileNet) for classification; YOLOv8 for detection.</li>
-          <li><strong>Transfer Learning:</strong> Fine-tuning pre-trained ImageNet weights on our domain-specific dataset to overcome limited sample sizes.</li>
-          <li><strong>Training & Validation:</strong> K-fold cross-validation with stratified splits to ensure robust performance across all particle classes.</li>
-          <li><strong>Evaluation:</strong> Using accuracy, precision, recall, F1-score, and mAP as primary performance metrics.</li>
-          <li><strong>Integration:</strong> Deploying the model behind a Flask/FastAPI backend with a responsive web frontend for end-to-end analysis.</li>
-        </ul>
+      <!-- ========== TAB 2: RESEARCH GAP ========== -->
+      <div class="domain-tab-content" id="tab-gap">
+        <h2 class="domain-tab-title">Research Gap</h2>
+
+        <div class="domain-highlight-card">
+          <div class="hl-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+            Research Gap
+          </div>
+          <p class="hl-text"><strong>The literature review highlights several critical limitations</strong> in existing urine microscopy analysis systems, indicating the need for a more integrated, intelligent, and clinically relevant solution.</p>
+        </div>
+
+        <div class="domain-cards-grid">
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25a2.25 2.25 0 0 1-2.25-2.25v-2.25Z"/></svg>
+            </div>
+            <div>
+              <h4>Fragmented Detection Systems</h4>
+              <p>Most current solutions are designed to detect only a single type of microscopic component (e.g., RBCs or bacteria). There is a lack of unified systems capable of analyzing multiple elements simultaneously within a single framework.</p>
+            </div>
+          </div>
+
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+            </div>
+            <div>
+              <h4>Lack of Clinical Interpretation</h4>
+              <p>Existing models primarily output detection results without translating them into meaningful clinical insights or disease predictions, limiting their usefulness for medical professionals.</p>
+            </div>
+          </div>
+
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+            </div>
+            <div>
+              <h4>Poor Data Integration</h4>
+              <p>Many approaches rely solely on image data and do not incorporate patient-specific information such as symptoms, medical history, or lab results, which are crucial for accurate diagnosis.</p>
+            </div>
+          </div>
+
+          <div class="domain-info-card">
+            <div class="dic-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+            </div>
+            <div>
+              <h4>Dataset Limitations</h4>
+              <p>Available datasets often suffer from class imbalance, limited diversity, and lack of standardization, which negatively impacts model generalization and real-world performance.</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== TECHNOLOGIES ===== -->
-  <section class="section-alt" id="technologies">
-    <div class="container">
-      <span class="section-label">Tech Stack</span>
-      <h2 class="section-title">Technologies Used</h2>
-      <p class="section-subtitle" style="margin-bottom:2.5rem;">Core AI/ML technologies and tools powering UrinoAI.</p>
+      <!-- ========== TAB 3: RESEARCH PROBLEM ========== -->
+      <div class="domain-tab-content" id="tab-problem">
+        <h2 class="domain-tab-title">Research Problem</h2>
 
-      <div class="tech-grid">
-        <div class="tech-tag"><span>🐍</span> Python 3.10+</div>
-        <div class="tech-tag"><span>🔥</span> PyTorch</div>
-        <div class="tech-tag"><span>🧠</span> TensorFlow / Keras</div>
-        <div class="tech-tag"><span>🎯</span> YOLOv8 (Ultralytics)</div>
-        <div class="tech-tag"><span>👁️</span> OpenCV</div>
-        <div class="tech-tag"><span>📊</span> scikit-learn</div>
-        <div class="tech-tag"><span>📈</span> Matplotlib / Seaborn</div>
-        <div class="tech-tag"><span>📓</span> Jupyter Notebooks</div>
-        <div class="tech-tag"><span>🖼️</span> PIL / Pillow</div>
-        <div class="tech-tag"><span>⚡</span> FastAPI</div>
-        <div class="tech-tag"><span>🐳</span> Docker</div>
-        <div class="tech-tag"><span>☁️</span> Google Colab / AWS</div>
-        <div class="tech-tag"><span>📦</span> NumPy / Pandas</div>
-        <div class="tech-tag"><span>🔄</span> Albumentations</div>
+        <div class="domain-highlight-card">
+          <div class="hl-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/></svg>
+            Research Problem
+          </div>
+          <p class="hl-text"><strong>Urinary diseases such as urinary tract infections, kidney stones, and renal disorders are often underdiagnosed</strong> due to the limitations of traditional urine microscopy methods. The absence of automated, intelligent systems results in delays, inconsistencies, and reduced diagnostic efficiency.</p>
+        </div>
+
+        <div class="domain-mini-grid">
+          <div class="domain-mini-card">
+            <div class="dmc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+            </div>
+            <h4>Manual Dependency</h4>
+            <p>Diagnosis heavily depends on trained laboratory professionals, making the process less scalable and prone to human error.</p>
+          </div>
+          <div class="domain-mini-card">
+            <div class="dmc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            </div>
+            <h4>Time Consumption</h4>
+            <p>Manual analysis of urine samples requires significant time, delaying diagnosis and treatment, especially in high-volume clinical settings.</p>
+          </div>
+          <div class="domain-mini-card">
+            <div class="dmc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.049.58.025 1.193-.14 1.743"/></svg>
+            </div>
+            <h4>Lack of Automation</h4>
+            <p>There is no widely adopted automated system that can perform end-to-end urine microscopy analysis and disease prediction.</p>
+          </div>
+          <div class="domain-mini-card">
+            <div class="dmc-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5 7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"/></svg>
+            </div>
+            <h4>Inconsistent Results</h4>
+            <p>Variability between different observers can lead to inconsistent and unreliable diagnostic outcomes.</p>
+          </div>
+        </div>
       </div>
+
+      <!-- ========== TAB 4: RESEARCH OBJECTIVES ========== -->
+      <div class="domain-tab-content" id="tab-objectives">
+        <h2 class="domain-tab-title">Research Objectives</h2>
+
+        <div class="domain-highlight-card">
+          <div class="hl-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            Main Objective
+          </div>
+          <p class="hl-text"><strong>The primary objective of this research is to develop an AI-powered, scalable system</strong> for automated urine microscopy analysis that enhances early detection and diagnosis of urinary-related diseases.</p>
+        </div>
+
+        <div class="domain-obj-grid">
+          <div class="domain-obj-card">
+            <div class="obj-num">1</div>
+            <p>Develop models to accurately detect microscopic elements such as RBCs, WBCs, bacteria, crystals, and casts</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">2</div>
+            <p>Analyze morphological patterns to support disease identification</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">3</div>
+            <p>Predict urinary tract infections based on detected components</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">4</div>
+            <p>Identify indicators related to kidney stone formation</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">5</div>
+            <p>Detect patterns associated with renal diseases</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">6</div>
+            <p>Integrate patient clinical data to improve prediction accuracy</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">7</div>
+            <p>Provide explainable AI outputs for transparency and clinical trust</p>
+          </div>
+          <div class="domain-obj-card">
+            <div class="obj-num">8</div>
+            <p>Develop a real-time web-based system for practical deployment</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== TAB 5: METHODOLOGY ========== -->
+      <div class="domain-tab-content" id="tab-methodology">
+        <h2 class="domain-tab-title">Methodology</h2>
+
+        <div class="domain-steps">
+          <div class="domain-step-card">
+            <div class="step-num">01</div>
+            <div>
+              <h4>Image Collection</h4>
+              <p>Acquire urine microscopy images from publicly available datasets and clinical sources to ensure diversity and reliability.</p>
+            </div>
+          </div>
+          <div class="domain-step-card">
+            <div class="step-num">02</div>
+            <div>
+              <h4>Preprocessing</h4>
+              <p>Apply image enhancement techniques such as resizing, normalization, and data augmentation to improve model performance.</p>
+            </div>
+          </div>
+          <div class="domain-step-card">
+            <div class="step-num">03</div>
+            <div>
+              <h4>Model Training</h4>
+              <p>Train deep learning models (CNN-based architectures and object detection models like YOLO) for accurate identification of microscopic components.</p>
+            </div>
+          </div>
+          <div class="domain-step-card">
+            <div class="step-num">04</div>
+            <div>
+              <h4>Feature Extraction</h4>
+              <p>Extract relevant visual features from images to support classification and disease prediction.</p>
+            </div>
+          </div>
+          <div class="domain-step-card">
+            <div class="step-num">05</div>
+            <div>
+              <h4>Prediction Engine</h4>
+              <p>Develop a system that combines detected components to generate disease predictions.</p>
+            </div>
+          </div>
+          <div class="domain-step-card">
+            <div class="step-num">06</div>
+            <div>
+              <h4>Explainable AI</h4>
+              <p>Integrate visualization techniques such as heatmaps to highlight important regions influencing model decisions.</p>
+            </div>
+          </div>
+          <div class="domain-step-card">
+            <div class="step-num">07</div>
+            <div>
+              <h4>Web Integration</h4>
+              <p>Deploy the system as a user-friendly web application for real-time analysis and accessibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== TAB 6: TECHNOLOGIES USED ========== -->
+      <div class="domain-tab-content" id="tab-technologies">
+        <h2 class="domain-tab-title">Technologies Used</h2>
+
+        <div class="domain-tech-grid">
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🐍</div>
+            <h4>Python</h4>
+            <p>Core programming language for AI and backend development</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🧠</div>
+            <h4>TensorFlow</h4>
+            <p>Deep learning framework for training models</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">⚛️</div>
+            <h4>React / Next.js</h4>
+            <p>Frontend framework for building interactive UI</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🟢</div>
+            <h4>Node.js</h4>
+            <p>Backend server for handling API requests</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🌶️</div>
+            <h4>Flask</h4>
+            <p>Lightweight API service for ML model integration</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🍃</div>
+            <h4>MongoDB</h4>
+            <p>Database for storing user and analysis data</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🐳</div>
+            <h4>Docker</h4>
+            <p>Containerization for consistent deployment</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">☁️</div>
+            <h4>AWS</h4>
+            <p>Cloud platform for hosting and scalability</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">📊</div>
+            <h4>Kaggle</h4>
+            <p>Dataset sourcing and experimentation</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">💻</div>
+            <h4>Google Colab</h4>
+            <p>Model training and experimentation environment</p>
+          </div>
+          <div class="domain-tech-card">
+            <div class="dtc-icon">🎨</div>
+            <h4>Figma</h4>
+            <p>UI/UX design and prototyping</p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -167,7 +377,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2024/25 UrinoAI Research Team — Sri Lanka Institute of Information Technology</p>
+        <p>&copy; 2024/25 UroAI Research Team — Sri Lanka Institute of Information Technology</p>
         <div class="footer-links">
           <a href="domain.html">Research</a>
           <a href="documents.html">Documents</a>
@@ -178,5 +388,27 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Domain Tab Switching
+    (function() {
+      const tabBtns = document.querySelectorAll('.domain-tab-btn');
+      const tabContents = document.querySelectorAll('.domain-tab-content');
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetTab = btn.getAttribute('data-tab');
+
+          // Deactivate all
+          tabBtns.forEach(b => b.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+
+          // Activate clicked
+          btn.classList.add('active');
+          const target = document.getElementById('tab-' + targetTab);
+          if (target) target.classList.add('active');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
