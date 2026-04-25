@@ -3,11 +3,332 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Project milestones and timeline for AI-Based Urine Microscopy Analysis research project.">
-  <title>Milestones — UrinoAI Research</title>
+  <meta name="description" content="Project milestones and timeline for AI-Based Urine Microscopy Analysis research project at SLIIT.">
+  <title>Milestones — MicroscopyAI Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Milestones page styles ── */
+
+    /* Hero */
+    .ms-hero {
+      padding: 140px 0 72px;
+      background: linear-gradient(135deg, #eef1f7 0%, #e8f4f8 55%, #ede9f6 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .ms-hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 440px; height: 440px;
+      background: radial-gradient(circle, rgba(0,151,167,0.13), transparent 70%);
+      pointer-events: none;
+    }
+    .ms-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(92,53,168,0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .ms-hero .container { position: relative; z-index: 1; }
+    .ms-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ms-hero p {
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Overall progress */
+    .progress-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-card);
+    }
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .progress-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .progress-pct {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .progress-bar-bg {
+      height: 10px;
+      background: var(--bg-section);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 54%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      transition: width 1.2s ease;
+    }
+    .progress-note {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      text-align: right;
+    }
+
+    /* Stats row */
+    .ms-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 56px 0 0;
+    }
+    .ms-stat {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px 16px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      transition: all 0.3s ease;
+    }
+    .ms-stat:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    .ms-stat-num {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .ms-stat-lbl {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      margin-top: 5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Timeline section */
+    .ms-section { padding: 80px 0; }
+    .ms-section.alt { background: var(--bg-section); }
+
+    /* Vertical timeline */
+    .ms-timeline {
+      position: relative;
+      max-width: 820px;
+      margin: 3rem auto 0;
+      padding-left: 52px;
+    }
+    .ms-timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom,
+        var(--primary) 0%,
+        var(--secondary) 60%,
+        var(--border) 100%);
+      border-radius: 3px;
+    }
+
+    /* Individual item */
+    .ms-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+    .ms-item:last-child { margin-bottom: 0; }
+
+    /* Dot */
+    .ms-dot {
+      position: absolute;
+      left: -41px;
+      top: 24px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px var(--border);
+      z-index: 1;
+    }
+    .ms-dot.done {
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,151,167,0.25);
+      color: #fff;
+    }
+    .ms-dot.pending {
+      background: var(--bg-section);
+      box-shadow: 0 0 0 3px rgba(15,23,42,0.08);
+      color: var(--text-subtle);
+    }
+
+    /* Card */
+    .ms-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-card);
+    }
+    .ms-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px) translateX(4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .ms-card.pending-card {
+      background: var(--bg-section);
+      border-style: dashed;
+    }
+    .ms-card.pending-card:hover {
+      background: #fff;
+    }
+
+    /* Card top row */
+    .ms-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .ms-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .ms-date-chip {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-glow);
+      border: 1px solid rgba(0,151,167,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .ms-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .ms-badge.done {
+      background: rgba(56,142,60,0.12);
+      color: #2e7d32;
+      border: 1px solid rgba(56,142,60,0.25);
+    }
+    .ms-badge.pending {
+      background: rgba(15,23,42,0.06);
+      color: var(--text-subtle);
+      border: 1px solid var(--border);
+    }
+    .ms-badge.inprogress {
+      background: rgba(230,81,0,0.1);
+      color: #bf360c;
+      border: 1px solid rgba(230,81,0,0.2);
+    }
+    .ms-marks {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 14px;
+      white-space: nowrap;
+    }
+    .ms-marks span {
+      color: var(--secondary);
+      font-size: 0.95rem;
+    }
+
+    .ms-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+    .ms-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: none;
+    }
+
+    /* Deliverables chips */
+    .ms-deliverables {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .ms-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+
+    @media (max-width: 768px) {
+      .ms-stats { grid-template-columns: repeat(2, 1fr); }
+      .ms-timeline { padding-left: 36px; }
+      .ms-timeline::before { left: 10px; }
+      .ms-dot { left: -29px; width: 18px; height: 18px; top: 20px; }
+      .ms-card { padding: 20px; }
+      .ms-card-top { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .ms-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -16,7 +337,7 @@
     <div class="container">
       <a href="index.html" class="nav-logo">
         <div class="logo-icon">🔬</div>
-        UrinoAI
+        MicroscopyAI
       </a>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
@@ -25,7 +346,7 @@
         <a href="documents.html">Documents</a>
         <a href="presentations.html">Presentations</a>
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Contact</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -33,84 +354,245 @@
     </div>
   </nav>
 
-  <!-- ===== PAGE HEADER ===== -->
-  <header class="page-header">
+  <!-- ===== HERO ===== -->
+  <header class="ms-hero">
     <div class="container">
-      <span class="section-label">Progress Tracking</span>
+      <span class="section-label">Research Progression</span>
       <h1>Project Milestones</h1>
-      <p>A chronological overview of our research journey, from initial proposal to final defense.</p>
+      <p>A chronological overview of our research journey — from initial proposal to final defense and evaluation.</p>
+
+      <!-- Progress bar -->
+      <div class="progress-wrap">
+        <div class="progress-top">
+          <span class="progress-label">Overall Completion</span>
+          <span class="progress-pct">54%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+        <div class="progress-note">4 of 8 milestones completed · 49% of marks secured</div>
+      </div>
+
+      <!-- Stats -->
+      <div class="ms-stats">
+        <div class="ms-stat">
+          <div class="ms-stat-num">8</div>
+          <div class="ms-stat-lbl">Total Milestones</div>
+        </div>
+        <div class="ms-stat">
+          <div class="ms-stat-num">4</div>
+          <div class="ms-stat-lbl">Completed</div>
+        </div>
+        <div class="ms-stat">
+          <div class="ms-stat-num">94%</div>
+          <div class="ms-stat-lbl">Total Marks</div>
+        </div>
+        <div class="ms-stat">
+          <div class="ms-stat-num">May '26</div>
+          <div class="ms-stat-lbl">Final Deadline</div>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- ===== TIMELINE ===== -->
-  <section>
+  <section class="ms-section">
     <div class="container">
-      <div class="timeline">
+      <span class="section-label">Timeline</span>
+      <h2 class="section-title">All Milestones</h2>
+      <p class="section-subtitle">Each milestone represents a formal academic evaluation of research progress with allocated marks.</p>
 
-        <div class="timeline-item completed">
-          <div class="timeline-date">September 2025</div>
-          <h3>Proposal Presentation</h3>
-          <p>Initial presentation of the research idea, problem statement, objectives, and proposed methodology for the AI-based urine microscopy analysis system. This stage focused on validating the feasibility and innovation of the solution with academic evaluators.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 6%</div>
-          <span class="timeline-status status-completed">✓ Complete</span>
+      <div class="ms-timeline">
+
+        <!-- 1. Proposal Presentation -->
+        <div class="ms-item">
+          <div class="ms-dot done">✓</div>
+          <div class="ms-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">September 2025</span>
+                <span class="ms-badge done">✓ Completed</span>
+              </div>
+              <span class="ms-marks">Marks: <span>6%</span></span>
+            </div>
+            <h3>📋 Proposal Presentation</h3>
+            <p>Initial presentation of the research idea, problem statement, objectives, and proposed methodology for the AI-based urine microscopy analysis system. Validated feasibility and innovation of the solution with academic evaluators.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">📑 Problem Statement</span>
+              <span class="ms-chip">🎯 Objectives</span>
+              <span class="ms-chip">🏗️ Proposed Architecture</span>
+              <span class="ms-chip">📚 Literature Review</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item completed">
-          <div class="timeline-date">December 2025</div>
-          <h3>Progress Presentation I (PP1)</h3>
-          <p>Evaluation of early system development, including dataset collection, preprocessing techniques, and initial model design. Demonstrated foundational progress in microscopic element detection using deep learning approaches.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 15%</div>
-          <span class="timeline-status status-completed">✓ Complete</span>
+        <!-- 2. PP1 -->
+        <div class="ms-item">
+          <div class="ms-dot done">✓</div>
+          <div class="ms-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">December 2025</span>
+                <span class="ms-badge done">✓ Completed</span>
+              </div>
+              <span class="ms-marks">Marks: <span>15%</span></span>
+            </div>
+            <h3>🔬 Progress Presentation I (PP1)</h3>
+            <p>Evaluation of early system development including dataset collection, preprocessing techniques, and initial model design. Demonstrated foundational progress in microscopic element detection using deep learning approaches.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">🗂️ Dataset Collection</span>
+              <span class="ms-chip">🖼️ Preprocessing Pipeline</span>
+              <span class="ms-chip">🧠 Initial Model Design</span>
+              <span class="ms-chip">📊 Baseline Results</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item completed">
-          <div class="timeline-date">March 2026</div>
-          <h3>Progress Presentation II (PP2)</h3>
-          <p>Showcased advanced implementation of the system, including trained models for detecting urine components (RBCs, WBCs, bacteria, etc.) and initial disease prediction capabilities. Identified improvements based on feedback from PP1.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 18%</div>
-          <span class="timeline-status status-completed">✓ Complete</span>
+        <!-- 3. PP2 -->
+        <div class="ms-item">
+          <div class="ms-dot done">✓</div>
+          <div class="ms-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">March 2026</span>
+                <span class="ms-badge done">✓ Completed</span>
+              </div>
+              <span class="ms-marks">Marks: <span>18%</span></span>
+            </div>
+            <h3>📈 Progress Presentation II (PP2)</h3>
+            <p>Showcased advanced implementation including trained models for detecting urine components (RBCs, WBCs, bacteria, crystals) and initial disease prediction capabilities. Addressed feedback from PP1.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">🎯 YOLO Detection</span>
+              <span class="ms-chip">🧪 Model Evaluation</span>
+              <span class="ms-chip">💊 Disease Prediction</span>
+              <span class="ms-chip">🖥️ Web Interface Demo</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item completed">
-          <div class="timeline-date">March 2026</div>
-          <h3>Research Paper Submission</h3>
-          <p>Preparation and submission of the research paper detailing methodology, experiments, results, and contributions. The paper highlights the novelty of integrating multi-component detection with disease prediction in urine microscopy.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 10%</div>
-          <span class="timeline-status status-completed">✓ Complete</span>
+        <!-- 4. Research Paper -->
+        <div class="ms-item">
+          <div class="ms-dot done">✓</div>
+          <div class="ms-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">March 2026</span>
+                <span class="ms-badge done">✓ Completed</span>
+              </div>
+              <span class="ms-marks">Marks: <span>10%</span></span>
+            </div>
+            <h3>📄 Research Paper Submission</h3>
+            <p>Preparation and submission of the research paper detailing methodology, experiments, results, and contributions. Highlights the novelty of integrating multi-component detection with disease prediction in urine microscopy.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">📝 Methodology</span>
+              <span class="ms-chip">📊 Experimental Results</span>
+              <span class="ms-chip">🏆 Contributions</span>
+              <span class="ms-chip">📖 Citations</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item upcoming">
-          <div class="timeline-date">May 2026</div>
-          <h3>Final Report</h3>
-          <p>Comprehensive documentation of the entire project, including system architecture, implementation details, evaluation results, and discussions. Covers both technical and research contributions.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 19%</div>
-          <span class="timeline-status status-upcoming">Pending</span>
+        <!-- 5. Final Report -->
+        <div class="ms-item">
+          <div class="ms-dot pending">5</div>
+          <div class="ms-card pending-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">May 2026</span>
+                <span class="ms-badge pending">🔄 Pending</span>
+              </div>
+              <span class="ms-marks">Marks: <span>19%</span></span>
+            </div>
+            <h3>📚 Final Report</h3>
+            <p>Comprehensive documentation of the entire project including system architecture, implementation details, evaluation results, and discussions. Covers both technical and research contributions in full academic format.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">🏗️ Architecture Docs</span>
+              <span class="ms-chip">📉 Full Evaluation</span>
+              <span class="ms-chip">🔭 Future Work</span>
+              <span class="ms-chip">📎 Appendices</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item upcoming">
-          <div class="timeline-date">May 2026</div>
-          <h3>Final Presentation & Viva</h3>
-          <p>Final demonstration of the complete system with live functionality. Includes individual viva evaluation to assess understanding of concepts, implementation, and research contributions.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 20%</div>
-          <span class="timeline-status status-upcoming">Pending</span>
+        <!-- 6. Final Presentation & Viva -->
+        <div class="ms-item">
+          <div class="ms-dot pending">6</div>
+          <div class="ms-card pending-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">May 2026</span>
+                <span class="ms-badge pending">🔄 Pending</span>
+              </div>
+              <span class="ms-marks">Marks: <span>20%</span></span>
+            </div>
+            <h3>🎓 Final Presentation &amp; Viva</h3>
+            <p>Final demonstration of the complete system with live functionality. Includes individual viva evaluation to assess understanding of concepts, implementation choices, and overall research contributions.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">🖥️ Live System Demo</span>
+              <span class="ms-chip">🎤 Q&A Viva</span>
+              <span class="ms-chip">📊 Final Slides</span>
+              <span class="ms-chip">🏁 Completion Certificate</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item upcoming">
-          <div class="timeline-date">May 2026</div>
-          <h3>Website Assessment</h3>
-          <p>Evaluation of the project website, which presents research domain, methodology, results, and system features in a structured and user-friendly manner.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 2%</div>
-          <span class="timeline-status status-upcoming">Pending</span>
+        <!-- 7. Website Assessment -->
+        <div class="ms-item">
+          <div class="ms-dot pending">7</div>
+          <div class="ms-card pending-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">May 2026</span>
+                <span class="ms-badge pending">🔄 Pending</span>
+              </div>
+              <span class="ms-marks">Marks: <span>2%</span></span>
+            </div>
+            <h3>🌐 Website Assessment</h3>
+            <p>Evaluation of the project website presenting the research domain, methodology, results, team details, and system features in a structured, user-friendly, and visually professional manner.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">🎨 Design Quality</span>
+              <span class="ms-chip">📋 Content Accuracy</span>
+              <span class="ms-chip">📱 Responsiveness</span>
+              <span class="ms-chip">🔗 Navigation</span>
+            </div>
+          </div>
         </div>
 
-        <div class="timeline-item upcoming">
-          <div class="timeline-date">May 2026</div>
-          <h3>Logbook</h3>
-          <p>Continuous documentation of weekly progress, research activities, challenges, and solutions throughout the project lifecycle.</p>
-          <div style="font-size: 0.85rem; margin-top: 8px; color: var(--text-muted);"><strong>Marks Allocated:</strong> 4%</div>
-          <span class="timeline-status status-upcoming">Pending</span>
+        <!-- 8. Logbook -->
+        <div class="ms-item">
+          <div class="ms-dot pending">8</div>
+          <div class="ms-card pending-card">
+            <div class="ms-card-top">
+              <div class="ms-card-meta">
+                <span class="ms-date-chip">May 2026</span>
+                <span class="ms-badge pending">🔄 Pending</span>
+              </div>
+              <span class="ms-marks">Marks: <span>4%</span></span>
+            </div>
+            <h3>📓 Logbook</h3>
+            <p>Continuous documentation of weekly progress, research activities, challenges encountered, and solutions implemented throughout the entire project lifecycle from inception to completion.</p>
+            <div class="ms-deliverables">
+              <span class="ms-chip">📅 Weekly Entries</span>
+              <span class="ms-chip">🛠️ Challenges & Solutions</span>
+              <span class="ms-chip">✅ Task Tracking</span>
+              <span class="ms-chip">📌 Supervisor Sign-off</span>
+            </div>
+          </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="ms-section alt" style="padding: 56px 0; text-align: center;">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom: 0.75rem;">Explore Related Resources</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">Dive into the documents, presentations, and research materials from each milestone.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="presentations.html" class="btn btn-primary">📽️ View Presentations</a>
+        <a href="documents.html" class="btn btn-outline">📄 View Documents</a>
+        <a href="domain.html" class="btn btn-outline">🔬 Research Domain</a>
       </div>
     </div>
   </section>
@@ -119,9 +601,16 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2024/25 UrinoAI Research Team — Sri Lanka Institute of Information Technology</p>
+        <div>
+          <div class="nav-logo" style="margin-bottom:8px;">
+            <div class="logo-icon">🔬</div>
+            MicroscopyAI
+          </div>
+          <p style="max-width:none;">© 2024/25 MicroscopyAI Research Team — Sri Lanka Institute of Information Technology</p>
+        </div>
         <div class="footer-links">
           <a href="domain.html">Research</a>
+          <a href="milestones.html">Milestones</a>
           <a href="documents.html">Documents</a>
           <a href="contact.html">Contact</a>
         </div>
