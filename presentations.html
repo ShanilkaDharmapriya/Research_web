@@ -3,17 +3,389 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Research presentations and slides for AI-Based Urine Microscopy Analysis project milestones.">
-  <title>Presentations — UrinoAI Research</title>
+  <meta name="description" content="View and download all project presentation slide decks from each milestone of the AI-Based Urine Microscopy Analysis research project.">
+  <title>Presentations — Uro.AI Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Page-specific styles ── */
+
+    /* Hero */
+    .pres-hero {
+      padding: 140px 0 72px;
+      background: linear-gradient(135deg, #eef1f7 0%, #e8f4f8 60%, #ede9f6 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .pres-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(0,151,167,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .pres-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(92,53,168,0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .pres-hero .container { position: relative; z-index: 1; }
+    .pres-hero .section-label { margin-bottom: 1rem; }
+    .pres-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .pres-hero p {
+      font-size: 1.1rem;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+    .pres-hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Stats bar */
+    .pres-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 0 auto;
+      max-width: 680px;
+      box-shadow: var(--shadow-card);
+      margin-top: 3rem;
+    }
+    .pres-stat {
+      flex: 1;
+      padding: 22px 16px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .pres-stat:last-child { border-right: none; }
+    .pres-stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .pres-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section */
+    .pres-section { padding: 72px 0; }
+    .pres-section.alt { background: var(--bg-section); }
+
+    /* Presentation cards */
+    .pres-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 2.5rem;
+    }
+
+    .pres-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+    .pres-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,151,167,0.14);
+      border-color: var(--border-hover);
+    }
+
+    /* Thumbnail area */
+    .pres-thumb {
+      position: relative;
+      height: 168px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pres-thumb-icon {
+      font-size: 3.5rem;
+      opacity: 0.85;
+      transition: transform 0.4s ease;
+      z-index: 1;
+    }
+    .pres-card:hover .pres-thumb-icon { transform: scale(1.12); }
+    .pres-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,151,167,0.18), rgba(92,53,168,0.18));
+    }
+    .pres-thumb-date {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .pres-thumb-status {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .status-done {
+      background: rgba(56,142,60,0.2);
+      color: #2e7d32;
+      border: 1px solid rgba(56,142,60,0.3);
+    }
+    .status-prep {
+      background: rgba(0,151,167,0.15);
+      color: var(--primary);
+      border: 1px solid rgba(0,151,167,0.25);
+    }
+
+    /* Card body */
+    .pres-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .pres-milestone-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .pres-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .pres-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .pres-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pres-meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+    .pres-download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,151,167,0.25);
+    }
+    .pres-download-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,151,167,0.35);
+      color: #fff;
+    }
+    .pres-download-btn.disabled {
+      background: var(--bg-section);
+      color: var(--text-subtle);
+      border: 1px solid var(--border);
+      box-shadow: none;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Highlights section */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 2.5rem;
+    }
+    .highlight-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: all 0.3s ease;
+    }
+    .highlight-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+    .highlight-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .highlight-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .highlight-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* Timeline strip */
+    .pres-timeline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-top: 2.5rem;
+      position: relative;
+    }
+    .pres-timeline::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      z-index: 0;
+    }
+    .ptl-step {
+      flex: 1;
+      text-align: center;
+      padding: 0 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .ptl-dot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px var(--border);
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .ptl-dot.done {
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,151,167,0.25);
+      color: #fff;
+    }
+    .ptl-dot.upcoming {
+      background: var(--bg-section);
+      color: var(--text-subtle);
+    }
+    .ptl-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .ptl-date {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .pres-hero { padding: 120px 0 56px; }
+      .pres-stats { flex-direction: column; max-width: 320px; }
+      .pres-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .pres-stat:last-child { border-bottom: none; }
+      .pres-timeline::before { display: none; }
+      .pres-timeline { flex-direction: column; gap: 16px; align-items: center; }
+      .ptl-step { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; }
+      .ptl-dot { margin: 0; flex-shrink: 0; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo"><div class="logo-icon">🔬</div>UrinoAI</a>
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img">
+      </a>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="domain.html">Domain</a>
@@ -21,64 +393,192 @@
         <a href="documents.html">Documents</a>
         <a href="presentations.html" class="active">Presentations</a>
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Contact</a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <header class="page-header">
+  <!-- ===== HERO ===== -->
+  <header class="pres-hero">
     <div class="container">
-      <span class="section-label">Milestone Presentations</span>
-      <h1>Presentations</h1>
-      <p>Slide decks presented at each project evaluation milestone.</p>
+      <span class="section-label">Academic Assets</span>
+      <h1>Project Presentations</h1>
+      <p>Access high-resolution slide decks and visual documentation from the Uro.AI research journey — from initial proposal through final defense.</p>
+      <div class="pres-hero-actions">
+        <a href="assets/presentations/proposal-presentation.pptx" class="btn btn-primary" download>
+          📥 Download All Slides
+        </a>
+        <a href="documents.html" class="btn btn-outline">
+          📄 View Documents
+        </a>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="pres-stats">
+        <div class="pres-stat">
+          <div class="pres-stat-number">4</div>
+          <div class="pres-stat-label">Total Decks</div>
+        </div>
+        <div class="pres-stat">
+          <div class="pres-stat-number">3</div>
+          <div class="pres-stat-label">Completed</div>
+        </div>
+        <div class="pres-stat">
+          <div class="pres-stat-number">31.2 MB</div>
+          <div class="pres-stat-label">Total Size</div>
+        </div>
+        <div class="pres-stat">
+          <div class="pres-stat-number">2025–26</div>
+          <div class="pres-stat-label">Academic Year</div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section>
+  <!-- ===== MILESTONE TIMELINE ===== -->
+  <section class="pres-section alt">
     <div class="container">
-      <div class="grid-2">
+      <span class="section-label">Project Timeline</span>
+      <h2 class="section-title">Presentation Milestones</h2>
+      <p class="section-subtitle">Track the progress of each presented milestone throughout the academic year.</p>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Proposal Presentation</h3>
-          <p>Initial project proposal covering problem statement, objectives, literature review, and planned methodology.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">February 2024 • 22 slides</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-primary">📥 Download PPTX</a>
-            <a href="#" class="btn btn-sm btn-outline">👁️ View PDF</a>
+      <div class="pres-timeline">
+        <div class="ptl-step">
+          <div class="ptl-dot done">✓</div>
+          <div class="ptl-label">Proposal</div>
+          <div class="ptl-date">Sep 2025</div>
+        </div>
+        <div class="ptl-step">
+          <div class="ptl-dot done">✓</div>
+          <div class="ptl-label">Progress I</div>
+          <div class="ptl-date">Dec 2025</div>
+        </div>
+        <div class="ptl-step">
+          <div class="ptl-dot done">✓</div>
+          <div class="ptl-label">Progress II</div>
+          <div class="ptl-date">Mar 2026</div>
+        </div>
+        <div class="ptl-step">
+          <div class="ptl-dot upcoming">4</div>
+          <div class="ptl-label">Final Defense</div>
+          <div class="ptl-date">May 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRESENTATIONS GRID ===== -->
+  <section class="pres-section fade-in-section">
+    <div class="container">
+      <div class="section-header-actions">
+        <div>
+          <span class="section-label">Slide Decks</span>
+          <h2 class="section-title">All Presentations</h2>
+          <p class="section-subtitle">Click any card to download the full slide deck in PPTX format.</p>
+        </div>
+        <a href="assets/presentations/proposal-presentation.pptx" class="btn btn-outline" download>
+          📦 Download All (.zip)
+        </a>
+      </div>
+
+      <div class="pres-grid">
+
+        <!-- Card 1 — Proposal -->
+        <div class="pres-card">
+          <div class="pres-thumb" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
+            <div class="pres-thumb-overlay"></div>
+            <div class="pres-thumb-icon">📽️</div>
+            <span class="pres-thumb-date">Sep 2025</span>
+            <span class="pres-thumb-status status-done">✓ Completed</span>
+          </div>
+          <div class="pres-body">
+            <div class="pres-milestone-tag">🏁 Milestone 1 — Proposal</div>
+            <h3 class="pres-card-title">Proposal Presentation</h3>
+            <p class="pres-card-desc">Introduction to the AI-Based Urine Microscopy Analysis project. Covers problem statement, literature review, proposed deep learning architecture, and project scope.</p>
+            <div class="pres-meta">
+              <span class="pres-meta-chip">📅 September 2025</span>
+              <span class="pres-meta-chip">👥 Group</span>
+              <span class="pres-meta-chip">💾 4.5 MB</span>
+              <span class="pres-meta-chip">📊 PPTX</span>
+            </div>
+            <a href="assets/presentations/proposal-presentation.pptx" class="pres-download-btn" download>
+              📥 Download Slides
+            </a>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Progress Presentation 1</h3>
-          <p>PP1 slides covering dataset preparation, preprocessing pipeline, initial model experiments, and architecture comparisons.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">May 2024 • 28 slides</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-primary">📥 Download PPTX</a>
-            <a href="#" class="btn btn-sm btn-outline">👁️ View PDF</a>
+        <!-- Card 2 — Progress I -->
+        <div class="pres-card">
+          <div class="pres-thumb" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);">
+            <div class="pres-thumb-overlay"></div>
+            <div class="pres-thumb-icon">📊</div>
+            <span class="pres-thumb-date">Dec 2025</span>
+            <span class="pres-thumb-status status-done">✓ Completed</span>
+          </div>
+          <div class="pres-body">
+            <div class="pres-milestone-tag">🔬 Milestone 2 — Progress I</div>
+            <h3 class="pres-card-title">Progress Presentation I</h3>
+            <p class="pres-card-desc">Mid-project progress update covering dataset collection, preprocessing pipeline, initial model training results, and preliminary accuracy benchmarks on urine sediment images.</p>
+            <div class="pres-meta">
+              <span class="pres-meta-chip">📅 December 2025</span>
+              <span class="pres-meta-chip">👥 Group</span>
+              <span class="pres-meta-chip">💾 6.2 MB</span>
+              <span class="pres-meta-chip">📊 PPTX</span>
+            </div>
+            <a href="assets/presentations/pp1.pptx" class="pres-download-btn" download>
+              📥 Download Slides
+            </a>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Progress Presentation 2</h3>
-          <p>PP2 slides with trained model results, detection benchmarks, comparative analysis, and system integration progress.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">September 2024 • 34 slides</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-primary">📥 Download PPTX</a>
-            <a href="#" class="btn btn-sm btn-outline">👁️ View PDF</a>
+        <!-- Card 3 — Progress II -->
+        <div class="pres-card">
+          <div class="pres-thumb" style="background: linear-gradient(135deg, #0d0d2b, #1b1b4b, #2b2d77);">
+            <div class="pres-thumb-overlay"></div>
+            <div class="pres-thumb-icon">📈</div>
+            <span class="pres-thumb-date">Mar 2026</span>
+            <span class="pres-thumb-status status-done">✓ Completed</span>
+          </div>
+          <div class="pres-body">
+            <div class="pres-milestone-tag">🧬 Milestone 3 — Progress II</div>
+            <h3 class="pres-card-title">Progress Presentation II</h3>
+            <p class="pres-card-desc">Advanced model evaluation, YOLO object detection integration, web interface demo, and comparative analysis of classification performance across particle categories.</p>
+            <div class="pres-meta">
+              <span class="pres-meta-chip">📅 March 2026</span>
+              <span class="pres-meta-chip">👥 Group</span>
+              <span class="pres-meta-chip">💾 8.1 MB</span>
+              <span class="pres-meta-chip">📊 PPTX</span>
+            </div>
+            <a href="assets/presentations/pp2.pptx" class="pres-download-btn" download>
+              📥 Download Slides
+            </a>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-icon">📽️</div>
-          <h3>Final Presentation</h3>
-          <p>Complete project presentation covering full system demo, results, evaluation, limitations, and future directions.</p>
-          <p style="font-size:0.8rem; color:var(--text-subtle); margin-top:8px;">December 2024 • Pending</p>
-          <div style="margin-top:16px; display:flex; gap:8px;">
-            <a href="#" class="btn btn-sm btn-outline" style="opacity:0.5; pointer-events:none;">📥 Coming Soon</a>
+        <!-- Card 4 — Final -->
+        <div class="pres-card">
+          <div class="pres-thumb" style="background: linear-gradient(135deg, #1a0533, #2d1b5e, #3d2478);">
+            <div class="pres-thumb-overlay" style="background: linear-gradient(135deg, rgba(92,53,168,0.3), rgba(0,151,167,0.2));"></div>
+            <div class="pres-thumb-icon">🎯</div>
+            <span class="pres-thumb-date">May 2026</span>
+            <span class="pres-thumb-status status-prep">🔄 In Preparation</span>
+          </div>
+          <div class="pres-body">
+            <div class="pres-milestone-tag">🏆 Milestone 4 — Final Defense</div>
+            <h3 class="pres-card-title">Final Presentation</h3>
+            <p class="pres-card-desc">Complete system showcase including end-to-end pipeline demo, final accuracy metrics, clinical validation results, future roadmap, and full academic thesis summary.</p>
+            <div class="pres-meta">
+              <span class="pres-meta-chip">📅 May 2026</span>
+              <span class="pres-meta-chip">👥 Group</span>
+              <span class="pres-meta-chip">💾 12.4 MB</span>
+              <span class="pres-meta-chip">📊 PPTX</span>
+            </div>
+            <span class="pres-download-btn disabled">
+              🔒 Coming Soon
+            </span>
           </div>
         </div>
 
@@ -86,12 +586,51 @@
     </div>
   </section>
 
+  <!-- ===== HIGHLIGHTS ===== -->
+  <section class="pres-section alt">
+    <div class="container">
+      <span class="section-label">Presentation Quality</span>
+      <h2 class="section-title">What's Inside Each Deck</h2>
+      <p class="section-subtitle">Every slide deck is crafted to academic standards with rich visuals and detailed annotations.</p>
+
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">🧠</div>
+          <h4>AI Architecture Diagrams</h4>
+          <p>Detailed model architecture visuals including CNN layers, YOLO detection pipelines, and data flow diagrams for each milestone stage.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📉</div>
+          <h4>Performance Metrics</h4>
+          <p>Accuracy curves, confusion matrices, precision-recall graphs, and benchmark comparisons against state-of-the-art methods.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🖼️</div>
+          <h4>Microscopy Visualizations</h4>
+          <p>High-resolution annotated urine sediment images showing detected particles including RBCs, WBCs, crystals, and bacteria.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📝</div>
+          <h4>Speaker Notes Included</h4>
+          <p>Every slide includes comprehensive speaker annotations and source citations for full academic transparency and reproducibility.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2024/25 UrinoAI Research Team — Sri Lanka Institute of Information Technology</p>
+        <div>
+          <div class="nav-logo" style="margin-bottom:8px;">
+            <img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img">
+          </div>
+          <p style="max-width:none;">© 2024/25 Uro.AI Research Team — Sri Lanka Institute of Information Technology</p>
+        </div>
         <div class="footer-links">
           <a href="domain.html">Research</a>
+          <a href="milestones.html">Milestones</a>
           <a href="documents.html">Documents</a>
           <a href="contact.html">Contact</a>
         </div>

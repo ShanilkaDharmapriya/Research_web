@@ -3,20 +3,317 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI-Based Urine Microscopy Analysis for Disease Detection — a university research project leveraging deep learning for automated medical diagnostics.">
-  <title>UrinoAI — AI-Based Urine Microscopy Analysis</title>
+  <meta name="description" content="AI-Based Urine Microscopy Analysis — Deep learning for automated urine sediment detection. SLIIT Research 2024/25.">
+  <title>Uro.AI — AI-Based Urine Microscopy Analysis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      padding-top: var(--nav-height);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      background: #f0f4f8;
+    }
+
+    /* Left content pane */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 56px 120px 5vw;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(0,151,167,0.1);
+      border: 1px solid rgba(0,151,167,0.2);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 1.75rem;
+      width: fit-content;
+    }
+    .hero-left h1 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1.18;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      -webkit-text-fill-color: unset;
+      background: none;
+    }
+    .hero-left h1 .accent {
+      color: var(--primary);
+    }
+    .hero-left .hero-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 420px;
+      margin-bottom: 2.25rem;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .hero-btns-row2 { display: flex; gap: 12px; }
+
+    /* Right image pane */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #f0f4f8 0%, transparent 25%);
+    }
+
+    /* Floating cell graphics on left side */
+    .hero-cells {
+      position: absolute;
+      bottom: 130px;
+      left: 0;
+      width: 340px;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    /* Feature strip */
+    .feature-strip {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.05);
+    }
+    .feature-strip-inner {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      divide-x: var(--border);
+    }
+    .fs-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 28px 22px;
+      border-right: 1px solid var(--border);
+      transition: background 0.25s;
+    }
+    .fs-item:last-child { border-right: none; }
+    .fs-item:hover { background: var(--bg-section); }
+    .fs-icon {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      background: var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+    }
+    .fs-text h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .fs-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      max-width: 160px;
+    }
+
+    /* Stats section */
+    .stats-section {
+      padding: 72px 0;
+      background: var(--bg-section);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 24px;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      transition: all 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--border-hover); }
+    .stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+    }
+    .stat-lbl { font-size: 0.82rem; color: var(--text-subtle); margin-top: 6px; font-weight: 500; }
+
+    /* Features section */
+    .home-section { padding: 80px 0; }
+    .home-section.alt { background: var(--bg-section); }
+    .sec-head { text-align: center; margin-bottom: 3rem; }
+    .sec-head p { margin: 0.75rem auto 0; max-width: 580px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+    }
+    .feat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      transition: all 0.3s;
+    }
+    .feat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--border-hover); }
+    .feat-card.highlight {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(0,151,167,0.04), rgba(92,53,168,0.04));
+    }
+    .feat-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--primary-glow);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .feat-card.highlight .feat-icon {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    .feat-card h3 { font-size: 1.05rem; margin-bottom: 0.6rem; }
+    .feat-card p { font-size: 0.88rem; line-height: 1.7; }
+
+    /* Workflow */
+    .workflow-row {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .wf-step {
+      padding: 32px 24px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      transition: background 0.25s;
+    }
+    .wf-step:last-child { border-right: none; }
+    .wf-step:hover { background: var(--bg-section); }
+    .wf-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 800; margin-bottom: 16px;
+    }
+    .wf-step h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .wf-step p { font-size: 0.83rem; line-height: 1.65; }
+    .wf-arr {
+      position: absolute; top: 50%; right: -13px; transform: translateY(-50%);
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; z-index: 2;
+      box-shadow: 0 2px 8px rgba(0,151,167,0.3);
+    }
+    .wf-step:last-child .wf-arr { display: none; }
+
+    /* Demo */
+    .demo-wrap { max-width: 700px; margin: 0 auto; }
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: var(--radius-lg);
+      padding: 52px 32px; text-align: center; cursor: pointer;
+      background: #fff; transition: all 0.3s;
+    }
+    .upload-zone:hover { border-color: var(--primary); background: rgba(0,151,167,0.03); }
+    .upload-zone.active { border-color: var(--primary); }
+
+    /* Tech strip */
+    .tech-strip { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+    .tech-pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 22px; background: #fff;
+      border: 1px solid var(--border); border-radius: 100px;
+      font-size: 0.88rem; font-weight: 600; color: var(--text-muted);
+      box-shadow: var(--shadow-card); transition: all 0.3s;
+    }
+    .tech-pill:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow-hover); color: var(--text-main); }
+
+    /* Footer */
+    .site-footer { background: var(--bg-section); border-top: 1px solid var(--border); padding: 52px 0 28px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-brand p { font-size: 0.85rem; margin-top: 10px; max-width: 260px; }
+    .footer-col h5 {
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--text-subtle); margin-bottom: 14px;
+    }
+    .footer-col a { display: block; font-size: 0.87rem; color: var(--text-muted); margin-bottom: 8px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.82rem; color: var(--text-subtle); max-width: none; }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 340px; }
+      .hero-right::after { background: linear-gradient(to bottom, #f0f4f8 0%, transparent 30%); }
+      .hero-left { padding: 60px 24px 40px; }
+      .feature-strip-inner { grid-template-columns: repeat(2,1fr); }
+      .fs-item:nth-child(2) { border-right: none; }
+      .stats-grid, .features-grid { grid-template-columns: repeat(2,1fr); }
+      .workflow-row { grid-template-columns: repeat(2,1fr); }
+      .wf-arr { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .feature-strip-inner { grid-template-columns: 1fr; }
+      .fs-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .features-grid, .workflow-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">
-        <div class="logo-icon">🔬</div>
-        UrinoAI
+        <img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img" height="200px"width="200px">
       </a>
       <div class="nav-links" id="navLinks">
         <a href="index.html" class="active">Home</a>
@@ -25,7 +322,7 @@
         <a href="documents.html">Documents</a>
         <a href="presentations.html">Presentations</a>
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Contact</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -33,172 +330,243 @@
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="hero" id="hero">
+    <div class="hero-left">
+      <div class="hero-badge">🔬 University Research Project · SLIIT 2024/25</div>
+      <h1>AI-Based Urine<br>Microscopy <span class="accent">Analysis</span></h1>
+      <p class="hero-desc">Leveraging deep learning and computer vision to automate urine sediment analysis — enabling faster, more accurate, and accessible disease screening for clinical environments.</p>
+      <div class="hero-btns">
+        <a href="#demo" class="btn btn-primary">🔬 Try Live Demo</a>
+        <a href="domain.html" class="btn btn-outline">📊 Explore Research</a>
+      </div>
+      <div class="hero-btns-row2">
+        <a href="documents.html" class="btn btn-outline">📄 Documents</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="assets/microscope_hero.png" alt="Laboratory microscope for urine analysis">
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <div class="feature-strip">
     <div class="container">
-      <div class="hero-badge">🧬 University Research Project 2024/25</div>
-      <h1>AI-Based Urine Microscopy<br>Analysis for Disease Detection</h1>
-      <p>Leveraging deep learning and computer vision to automate urine sediment microscopy analysis, enabling faster, more accurate, and accessible disease screening.</p>
-      <div class="hero-actions">
-        <a href="#demo" class="btn btn-primary">🧪 Try Demo</a>
-        <a href="documents.html" class="btn btn-outline">📄 View Documents</a>
-        <a href="domain.html" class="btn btn-outline">📚 Explore Research</a>
+      <div class="feature-strip-inner">
+        <div class="fs-item">
+          <div class="fs-icon">🤖</div>
+          <div class="fs-text">
+            <h4>AI-Powered Detection</h4>
+            <p>Deep learning models detect and classify multiple urine sediment particles.</p>
+          </div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">📊</div>
+          <div class="fs-text">
+            <h4>Quantitative Analysis</h4>
+            <p>Accurate counts per HPF and detailed morphological features.</p>
+          </div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">🛡️</div>
+          <div class="fs-text">
+            <h4>Clinical Decision Support</h4>
+            <p>Rule-based &amp; ML models assist in predicting urinary and renal diseases.</p>
+          </div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">⚡</div>
+          <div class="fs-text">
+            <h4>Fast &amp; Reliable</h4>
+            <p>Real-time analysis with high accuracy and minimal processing time.</p>
+          </div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">🔒</div>
+          <div class="fs-text">
+            <h4>Secure &amp; Scalable</h4>
+            <p>Built with security, privacy, and scalability in mind.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="sec-head">
+        <span class="section-label">Research Impact</span>
+        <h2>Results that speak for themselves</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">95%+</div><div class="stat-lbl">Model Accuracy</div></div>
+        <div class="stat-card"><div class="stat-num">&lt;3s</div><div class="stat-lbl">Processing Time</div></div>
+        <div class="stat-card"><div class="stat-num">15k+</div><div class="stat-lbl">Training Images</div></div>
+        <div class="stat-card"><div class="stat-num">12</div><div class="stat-lbl">Particle Classes</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== PROBLEM + SOLUTION ===== -->
-  <section class="section-alt" id="overview">
+  <!-- FEATURES -->
+  <section class="home-section" id="features">
     <div class="container">
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-icon">⚠️</div>
-          <h3>The Problem</h3>
-          <p>Traditional urine sediment analysis is manual, time-consuming, and prone to human error. It relies heavily on trained laboratory personnel, making it inconsistent and inaccessible in resource-limited settings.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">💡</div>
-          <h3>Our Solution</h3>
-          <p>We propose an AI-powered system that uses convolutional neural networks (CNNs) and object detection models to automatically classify urine sediment particles, providing rapid and reliable diagnostic support.</p>
-        </div>
+      <div class="sec-head">
+        <span class="section-label">Core Research Features</span>
+        <h2>Advanced tools designed for clinical precision</h2>
+        <p>A full AI pipeline from microscopy image input to structured diagnostic insight.</p>
       </div>
-
-      <!-- Stats -->
-      <div class="stats-row">
-        <div class="stat-item">
-          <div class="stat-number">95%+</div>
-          <div class="stat-label">Target Accuracy</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">12</div>
-          <div class="stat-label">Particle Classes</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">&lt;3s</div>
-          <div class="stat-label">Analysis Time</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">4</div>
-          <div class="stat-label">Team Members</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== KEY FEATURES ===== -->
-  <section id="features">
-    <div class="container">
-      <span class="section-label">Key Features</span>
-      <h2 class="section-title">What Our System Offers</h2>
-      <p class="section-subtitle" style="margin-bottom:2.5rem;">A comprehensive AI pipeline from image input to diagnostic insight.</p>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">🖼️</div>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon">🖼️</div>
           <h3>Image Preprocessing</h3>
-          <p>Automated noise reduction, contrast enhancement, and normalization of microscopy images for optimal model input.</p>
+          <p>Automated noise reduction, contrast enhancement, and normalisation of microscopy images for optimal model input quality.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">🧠</div>
-          <h3>Deep Learning Classification</h3>
-          <p>State-of-the-art CNN architectures trained to classify urine sediment particles across multiple diagnostic categories.</p>
+        <div class="feat-card highlight">
+          <div class="feat-icon">⚡</div>
+          <h3 style="color:var(--primary);">Real-time Analysis</h3>
+          <p>Instantaneous classification and visualisation of sediments directly from the microscope feed with live bounding boxes.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">🎯</div>
-          <h3>Object Detection</h3>
-          <p>Real-time localization and identification of individual particles within microscopy slides using YOLO-based detection.</p>
+        <div class="feat-card">
+          <div class="feat-icon">🎯</div>
+          <h3>High Accuracy</h3>
+          <p>Rigorous validation against professional cytopathology benchmarks with multi-class precision and recall metrics.</p>
         </div>
-        <div class="card">
-          <div class="card-icon">📊</div>
-          <h3>Quantitative Analysis</h3>
-          <p>Automated cell counting and concentration estimation to support clinicians in diagnostic decision-making.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📱</div>
-          <h3>User-Friendly Interface</h3>
-          <p>Clean web-based interface allowing lab technicians to upload images and receive results in seconds.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📋</div>
+        <div class="feat-card">
+          <div class="feat-icon">📋</div>
           <h3>Report Generation</h3>
-          <p>Structured diagnostic reports with particle counts, classifications, and confidence scores for each analysis.</p>
+          <p>Structured diagnostic reports with particle counts, classifications, and confidence scores for every analysis run.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">🧠</div>
+          <h3>Automated Diagnostics</h3>
+          <p>Generates clinical reports based on model predictions, reducing dependence on manually trained lab personnel.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon">📱</div>
+          <h3>Web Interface</h3>
+          <p>Clean, responsive web UI allowing lab technicians to upload images and receive results within seconds.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SYSTEM DEMO ===== -->
-  <section class="section-alt" id="demo">
+  <!-- WORKFLOW -->
+  <section class="home-section alt" id="workflow">
     <div class="container">
-      <span class="section-label">System Demonstration</span>
-      <h2 class="section-title">Try the Analysis System</h2>
-      <p class="section-subtitle" style="margin-bottom:2.5rem;">Upload a urine microscopy image to see a simulated AI analysis result.</p>
+      <div class="sec-head">
+        <span class="section-label">System Workflow</span>
+        <h2>From raw image to clinical insight</h2>
+        <p>A four-stage pipeline designed for speed, accuracy, and reliability.</p>
+      </div>
+      <div class="workflow-row">
+        <div class="wf-step">
+          <div class="wf-num">1</div>
+          <h4>Image Acquisition</h4>
+          <p>Capture urine sediment images from a connected microscope or upload from local storage.</p>
+          <div class="wf-arr">→</div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">2</div>
+          <h4>Preprocessing</h4>
+          <p>Noise reduction, contrast enhancement, and normalisation for optimal model input.</p>
+          <div class="wf-arr">→</div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">3</div>
+          <h4>Model Inference</h4>
+          <p>Deep learning model detects and classifies urine components with real-time bounding boxes.</p>
+          <div class="wf-arr">→</div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">4</div>
+          <h4>Prediction Output</h4>
+          <p>Validated clinical report with particle counts, disease flags, and confidence levels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="demo-container">
+  <!-- DEMO -->
+  <section class="home-section" id="demo">
+    <div class="container">
+      <div class="sec-head">
+        <span class="section-label">System Demonstration</span>
+        <h2>Try the Analysis System</h2>
+        <p>Upload a urine microscopy image to see a simulated AI analysis result.</p>
+      </div>
+      <div class="demo-wrap">
         <div class="upload-zone" id="uploadZone">
-          <div class="upload-icon">📤</div>
+          <div style="font-size:2.5rem;margin-bottom:1rem;">📤</div>
           <h3>Upload Microscopy Image</h3>
-          <p>Drag & drop or click to select a urine sediment microscopy image (JPG, PNG)</p>
+          <p>Drag &amp; drop or click to select (JPG, PNG)</p>
           <input type="file" id="fileInput" accept="image/*" style="display:none;">
         </div>
-
         <div class="demo-preview" id="demoPreview">
-          <img id="previewImage" src="" alt="Uploaded microscopy image">
+          <img id="previewImage" src="" alt="Preview" style="max-height:280px;margin:0 auto 24px;border-radius:var(--radius-md);border:1px solid var(--border);">
           <div class="result-card">
             <h4 style="margin-bottom:16px;">🔍 Analysis Results (Simulated)</h4>
-            <div class="result-row">
-              <span class="result-label">Red Blood Cells (RBC)</span>
-              <div>
-                <span class="result-value" style="color:var(--error);">12 /HPF — Elevated</span>
-                <div class="confidence-bar"><div class="confidence-fill" style="width:88%"></div></div>
-              </div>
-            </div>
-            <div class="result-row">
-              <span class="result-label">White Blood Cells (WBC)</span>
-              <div>
-                <span class="result-value" style="color:var(--warning);">8 /HPF — Borderline</span>
-                <div class="confidence-bar"><div class="confidence-fill" style="width:72%"></div></div>
-              </div>
-            </div>
-            <div class="result-row">
-              <span class="result-label">Epithelial Cells</span>
-              <div>
-                <span class="result-value" style="color:var(--success);">3 /HPF — Normal</span>
-                <div class="confidence-bar"><div class="confidence-fill" style="width:94%"></div></div>
-              </div>
-            </div>
-            <div class="result-row">
-              <span class="result-label">Crystals (Calcium Oxalate)</span>
-              <div>
-                <span class="result-value" style="color:var(--error);">Detected</span>
-                <div class="confidence-bar"><div class="confidence-fill" style="width:91%"></div></div>
-              </div>
-            </div>
-            <div class="result-row">
-              <span class="result-label">Bacteria</span>
-              <div>
-                <span class="result-value" style="color:var(--success);">Not Detected</span>
-                <div class="confidence-bar"><div class="confidence-fill" style="width:97%"></div></div>
-              </div>
-            </div>
-            <div class="result-row">
-              <span class="result-label">Overall Confidence</span>
-              <div>
-                <span class="result-value" style="color:var(--primary);">92.4%</span>
-                <div class="confidence-bar"><div class="confidence-fill" style="width:92%"></div></div>
-              </div>
-            </div>
+            <div class="result-row"><span class="result-label">Red Blood Cells (RBC)</span><div><span class="result-value" style="color:var(--error);">12 /HPF — Elevated</span><div class="confidence-bar"><div class="confidence-fill" style="width:88%"></div></div></div></div>
+            <div class="result-row"><span class="result-label">White Blood Cells (WBC)</span><div><span class="result-value" style="color:var(--warning);">8 /HPF — Borderline</span><div class="confidence-bar"><div class="confidence-fill" style="width:72%"></div></div></div></div>
+            <div class="result-row"><span class="result-label">Epithelial Cells</span><div><span class="result-value" style="color:var(--success);">3 /HPF — Normal</span><div class="confidence-bar"><div class="confidence-fill" style="width:94%"></div></div></div></div>
+            <div class="result-row"><span class="result-label">Crystals (Calcium Oxalate)</span><div><span class="result-value" style="color:var(--error);">Detected</span><div class="confidence-bar"><div class="confidence-fill" style="width:91%"></div></div></div></div>
+            <div class="result-row"><span class="result-label">Overall Confidence</span><div><span class="result-value" style="color:var(--primary);">92.4%</span><div class="confidence-bar"><div class="confidence-fill" style="width:92%"></div></div></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
+  <!-- TECH STACK -->
+  <section class="home-section alt">
     <div class="container">
-      <div class="footer-content">
-        <p>&copy; 2024/25 UrinoAI Research Team — Sri Lanka Institute of Information Technology</p>
+      <div class="sec-head">
+        <span class="section-label">Technological Stack</span>
+        <h2>Built with industry-leading tools</h2>
+      </div>
+      <div class="tech-strip">
+        <span class="tech-pill">🤖 YOLO v8</span>
+        <span class="tech-pill">🐍 Python 3.11</span>
+        <span class="tech-pill">🔥 PyTorch</span>
+        <span class="tech-pill">☁️ Azure AI</span>
+        <span class="tech-pill">🐘 PostgreSQL</span>
+        <span class="tech-pill">⚗️ Flask</span>
+        <span class="tech-pill">📊 OpenCV</span>
+        <span class="tech-pill">🌐 React.js</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo"><img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img"></div>
+          <p>Pushing the boundaries of biomedical imaging through artificial intelligence. SLIIT Research 2024/25.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <a href="index.html">Home</a>
+          <a href="domain.html">Research Domain</a>
+          <a href="milestones.html">Milestones</a>
+          <a href="about.html">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h5>Resources</h5>
+          <a href="documents.html">Research Papers</a>
+          <a href="presentations.html">Presentations</a>
+          <a href="domain.html">Methodology</a>
+        </div>
+        <div class="footer-col">
+          <h5>Documentation</h5>
+          <a href="documents.html">Technical Docs</a>
+          <a href="documents.html">API Reference</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024/25 Uro.AI Research Team — Sri Lanka Institute of Information Technology</p>
         <div class="footer-links">
           <a href="domain.html">Research</a>
           <a href="documents.html">Documents</a>
