@@ -3,17 +3,389 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Research documents and deliverables for AI-Based Urine Microscopy Analysis project.">
+  <meta name="description" content="Download all research documents, reports, and deliverables from the AI-Based Urine Microscopy Analysis project.">
   <title>Documents — Uro.AI Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Page-specific styles (mirrors Presentations page) ── */
+
+    /* Hero */
+    .docs-hero {
+      padding: 140px 0 72px;
+      background: linear-gradient(135deg, #eef1f7 0%, #e8f4f8 60%, #ede9f6 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .docs-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(0,151,167,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .docs-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(92,53,168,0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .docs-hero .container { position: relative; z-index: 1; }
+    .docs-hero .section-label { margin-bottom: 1rem; }
+    .docs-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-main) 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .docs-hero p {
+      font-size: 1.1rem;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+    .docs-hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Stats bar */
+    .docs-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 0 auto;
+      max-width: 680px;
+      box-shadow: var(--shadow-card);
+      margin-top: 3rem;
+    }
+    .docs-stat {
+      flex: 1;
+      padding: 22px 16px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .docs-stat:last-child { border-right: none; }
+    .docs-stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .docs-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section */
+    .docs-section { padding: 72px 0; }
+    .docs-section.alt { background: var(--bg-section); }
+
+    /* Document cards */
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 2.5rem;
+    }
+
+    .docs-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+    .docs-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,151,167,0.14);
+      border-color: var(--border-hover);
+    }
+
+    /* Thumbnail area */
+    .docs-thumb {
+      position: relative;
+      height: 168px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .docs-thumb-icon {
+      font-size: 3.5rem;
+      opacity: 0.85;
+      transition: transform 0.4s ease;
+      z-index: 1;
+    }
+    .docs-card:hover .docs-thumb-icon { transform: scale(1.12); }
+    .docs-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,151,167,0.18), rgba(92,53,168,0.18));
+    }
+    .docs-thumb-date {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .docs-thumb-status {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .docs-status-done {
+      background: rgba(56,142,60,0.2);
+      color: #2e7d32;
+      border: 1px solid rgba(56,142,60,0.3);
+    }
+    .docs-status-prep {
+      background: rgba(0,151,167,0.15);
+      color: var(--primary);
+      border: 1px solid rgba(0,151,167,0.25);
+    }
+
+    /* Card body */
+    .docs-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .docs-type-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .docs-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .docs-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .docs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .docs-meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+    }
+    .docs-download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0,151,167,0.25);
+    }
+    .docs-download-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,151,167,0.35);
+      color: #fff;
+    }
+    .docs-download-btn.disabled {
+      background: var(--bg-section);
+      color: var(--text-subtle);
+      border: 1px solid var(--border);
+      box-shadow: none;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Highlights section */
+    .docs-highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 2.5rem;
+    }
+    .docs-highlight-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      transition: all 0.3s ease;
+    }
+    .docs-highlight-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+    .docs-highlight-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .docs-highlight-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .docs-highlight-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* Timeline strip */
+    .docs-timeline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-top: 2.5rem;
+      position: relative;
+    }
+    .docs-timeline::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      z-index: 0;
+    }
+    .dtl-step {
+      flex: 1;
+      text-align: center;
+      padding: 0 8px;
+      position: relative;
+      z-index: 1;
+    }
+    .dtl-dot {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 3px var(--border);
+      background: #fff;
+      transition: all 0.3s ease;
+    }
+    .dtl-dot.done {
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,151,167,0.25);
+      color: #fff;
+    }
+    .dtl-dot.upcoming {
+      background: var(--bg-section);
+      color: var(--text-subtle);
+    }
+    .dtl-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .dtl-date {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .docs-hero { padding: 120px 0 56px; }
+      .docs-stats { flex-direction: column; max-width: 320px; }
+      .docs-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .docs-stat:last-child { border-bottom: none; }
+      .docs-timeline::before { display: none; }
+      .docs-timeline { flex-direction: column; gap: 16px; align-items: center; }
+      .dtl-step { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; }
+      .dtl-dot { margin: 0; flex-shrink: 0; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img"></a>
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img">
+      </a>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="domain.html">Domain</a>
@@ -21,114 +393,252 @@
         <a href="documents.html" class="active">Documents</a>
         <a href="presentations.html">Presentations</a>
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Contact</a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <header class="page-header">
+  <!-- ===== HERO ===== -->
+  <header class="docs-hero">
     <div class="container">
       <span class="section-label">Research Deliverables</span>
-      <h1>Documents</h1>
-      <p>All project documents, reports, and research papers available for download.</p>
+      <h1>Project Documents</h1>
+      <p>Access and download all official research documents, reports, and academic deliverables from the Uro.AI project — from initial assessment through final thesis.</p>
+      <div class="docs-hero-actions">
+        <a href="#" class="btn btn-primary" onclick="alert('Preparing documents archive...')">
+          📥 Download All Documents
+        </a>
+        <a href="presentations.html" class="btn btn-outline">
+          📊 View Presentations
+        </a>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="docs-stats">
+        <div class="docs-stat">
+          <div class="docs-stat-number">4</div>
+          <div class="docs-stat-label">Total Documents</div>
+        </div>
+        <div class="docs-stat">
+          <div class="docs-stat-number">3</div>
+          <div class="docs-stat-label">Completed</div>
+        </div>
+        <div class="docs-stat">
+          <div class="docs-stat-number">12.5 MB</div>
+          <div class="docs-stat-label">Total Size</div>
+        </div>
+        <div class="docs-stat">
+          <div class="docs-stat-number">2025–26</div>
+          <div class="docs-stat-label">Academic Year</div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section class="fade-in-section">
+  <!-- ===== DOCUMENT TIMELINE ===== -->
+  <section class="docs-section alt">
     <div class="container">
-      <div class="section-header-actions">
-        <div>
-          <h2 class="section-title">Project Documents</h2>
-          <p class="section-subtitle">Core deliverables, project proposals, and research papers.</p>
-        </div>
-        <button class="btn btn-outline" onclick="alert('Preparing documents archive...')">
-          📥 Download All (.zip)
-        </button>
-      </div>
+      <span class="section-label">Submission Timeline</span>
+      <h2 class="section-title">Document Milestones</h2>
+      <p class="section-subtitle">Track the progress of each document deliverable throughout the academic year.</p>
 
-      <div class="resource-grid">
-        <!-- Card 1 -->
-        <div class="resource-card">
-          <div class="resource-icon-wrapper doc">📋</div>
-          <h3 class="resource-title">Topic Assessment</h3>
-          <div class="resource-badges">
-            <span class="resource-badge badge-pdf">PDF</span>
-            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
+      <div class="docs-timeline">
+        <div class="dtl-step">
+          <div class="dtl-dot done">✓</div>
+          <div>
+            <div class="dtl-label">Topic Assessment</div>
+            <div class="dtl-date">Sep 2025</div>
           </div>
-          <div class="resource-meta">
-            <div class="meta-item"><span class="meta-icon">📅</span> September 2025</div>
-            <div class="meta-item"><span class="meta-icon">👥</span> Group</div>
-            <div class="meta-item"><span class="meta-icon">💾</span> 1.2 MB</div>
-          </div>
-          <a href="/assets/documents/topic-assessment.pdf" class="resource-download" download>
-            📥 Download File
-          </a>
         </div>
-
-        <!-- Card 2 -->
-        <div class="resource-card">
-          <div class="resource-icon-wrapper doc">📝</div>
-          <h3 class="resource-title">Project Proposal</h3>
-          <div class="resource-badges">
-            <span class="resource-badge badge-pdf">PDF</span>
-            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
+        <div class="dtl-step">
+          <div class="dtl-dot done">✓</div>
+          <div>
+            <div class="dtl-label">Project Proposal</div>
+            <div class="dtl-date">Sep 2025</div>
           </div>
-          <div class="resource-meta">
-            <div class="meta-item"><span class="meta-icon">📅</span> September 2025</div>
-            <div class="meta-item"><span class="meta-icon">👤</span> Individual</div>
-            <div class="meta-item"><span class="meta-icon">💾</span> 2.4 MB</div>
-          </div>
-          <a href="/assets/documents/project-proposal.pdf" class="resource-download" download>
-            📥 Download File
-          </a>
         </div>
-
-        <!-- Card 3 -->
-        <div class="resource-card">
-          <div class="resource-icon-wrapper doc">📚</div>
-          <h3 class="resource-title">Research Paper</h3>
-          <div class="resource-badges">
-            <span class="resource-badge badge-pdf">PDF</span>
-            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
+        <div class="dtl-step">
+          <div class="dtl-dot done">✓</div>
+          <div>
+            <div class="dtl-label">Research Paper</div>
+            <div class="dtl-date">Mar 2026</div>
           </div>
-          <div class="resource-meta">
-            <div class="meta-item"><span class="meta-icon">📅</span> March 2026</div>
-            <div class="meta-item"><span class="meta-icon">👥</span> Group</div>
-            <div class="meta-item"><span class="meta-icon">💾</span> 3.1 MB</div>
-          </div>
-          <a href="/assets/documents/research-paper.pdf" class="resource-download" download>
-            📥 Download File
-          </a>
         </div>
-
-        <!-- Card 4 -->
-        <div class="resource-card">
-          <div class="resource-icon-wrapper doc">📖</div>
-          <h3 class="resource-title">Final Report</h3>
-          <div class="resource-badges">
-            <span class="resource-badge badge-pdf">PDF</span>
-            <span class="timeline-status status-completed" style="margin-top:0;">Completed</span>
+        <div class="dtl-step">
+          <div class="dtl-dot done">✓</div>
+          <div>
+            <div class="dtl-label">Final Report</div>
+            <div class="dtl-date">May 2026</div>
           </div>
-          <div class="resource-meta">
-            <div class="meta-item"><span class="meta-icon">📅</span> May 2026</div>
-            <div class="meta-item"><span class="meta-icon">👤</span> Individual</div>
-            <div class="meta-item"><span class="meta-icon">💾</span> 5.8 MB</div>
-          </div>
-          <a href="/assets/documents/final-report.pdf" class="resource-download" download>
-            📥 Download File
-          </a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===== DOCUMENTS GRID ===== -->
+  <section class="docs-section fade-in-section">
+    <div class="container">
+      <div class="section-header-actions">
+        <div>
+          <span class="section-label">Official Reports</span>
+          <h2 class="section-title">All Documents</h2>
+          <p class="section-subtitle">Click any card to download the full document in PDF format.</p>
+        </div>
+        <a href="#" class="btn btn-outline" onclick="alert('Preparing documents archive...')">
+          📦 Download All (.zip)
+        </a>
+      </div>
+
+      <div class="docs-grid">
+
+        <!-- Card 1 — Topic Assessment -->
+        <div class="docs-card">
+          <div class="docs-thumb" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
+            <div class="docs-thumb-overlay"></div>
+            <div class="docs-thumb-icon">📋</div>
+            <span class="docs-thumb-date">Sep 2025</span>
+            <span class="docs-thumb-status docs-status-done">✓ Completed</span>
+          </div>
+          <div class="docs-body">
+            <div class="docs-type-tag">📄 Assessment — Phase 1</div>
+            <h3 class="docs-card-title">Topic Assessment</h3>
+            <p class="docs-card-desc">Initial topic evaluation and feasibility study covering problem identification, research gap analysis, and the proposed AI-driven approach for urine microscopy sediment classification.</p>
+            <div class="docs-meta">
+              <span class="docs-meta-chip">📅 September 2025</span>
+              <span class="docs-meta-chip">👥 Group</span>
+              <span class="docs-meta-chip">💾 1.2 MB</span>
+              <span class="docs-meta-chip">📑 PDF</span>
+            </div>
+            <a href="assets/documents/topic-assessment.pdf" class="docs-download-btn" download>
+              📥 Download Document
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2 — Project Proposal -->
+        <div class="docs-card">
+          <div class="docs-thumb" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);">
+            <div class="docs-thumb-overlay"></div>
+            <div class="docs-thumb-icon">📝</div>
+            <span class="docs-thumb-date">Sep 2025</span>
+            <span class="docs-thumb-status docs-status-done">✓ Completed</span>
+          </div>
+          <div class="docs-body">
+            <div class="docs-type-tag">📄 Proposal — Phase 1</div>
+            <h3 class="docs-card-title">Project Proposal</h3>
+            <p class="docs-card-desc">Comprehensive project proposal outlining research objectives, proposed deep learning methodology, YOLOv8 architecture selection, expected outcomes, and the project timeline for each individual component.</p>
+            <div class="docs-meta">
+              <span class="docs-meta-chip">📅 September 2025</span>
+              <span class="docs-meta-chip">👤 Individual</span>
+              <span class="docs-meta-chip">💾 2.4 MB</span>
+              <span class="docs-meta-chip">📑 PDF</span>
+            </div>
+            <a href="assets/documents/project-proposal.pdf" class="docs-download-btn" download>
+              📥 Download Document
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3 — Research Paper -->
+        <div class="docs-card">
+          <div class="docs-thumb" style="background: linear-gradient(135deg, #0d0d2b, #1b1b4b, #2b2d77);">
+            <div class="docs-thumb-overlay"></div>
+            <div class="docs-thumb-icon">📚</div>
+            <span class="docs-thumb-date">Mar 2026</span>
+            <span class="docs-thumb-status docs-status-done">✓ Completed</span>
+          </div>
+          <div class="docs-body">
+            <div class="docs-type-tag">📄 Publication — Phase 3</div>
+            <h3 class="docs-card-title">Research Paper</h3>
+            <p class="docs-card-desc">Peer-reviewed research paper presenting the full AI pipeline, experimental results, accuracy benchmarks, and comparative analysis against existing urine sediment analysis methods.</p>
+            <div class="docs-meta">
+              <span class="docs-meta-chip">📅 March 2026</span>
+              <span class="docs-meta-chip">👥 Group</span>
+              <span class="docs-meta-chip">💾 3.1 MB</span>
+              <span class="docs-meta-chip">📑 PDF</span>
+            </div>
+            <a href="assets/documents/research-paper.pdf" class="docs-download-btn" download>
+              📥 Download Document
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4 — Final Report -->
+        <div class="docs-card">
+          <div class="docs-thumb" style="background: linear-gradient(135deg, #1a0533, #2d1b5e, #3d2478);">
+            <div class="docs-thumb-overlay" style="background: linear-gradient(135deg, rgba(92,53,168,0.3), rgba(0,151,167,0.2));"></div>
+            <div class="docs-thumb-icon">📖</div>
+            <span class="docs-thumb-date">May 2026</span>
+            <span class="docs-thumb-status docs-status-done">✓ Completed</span>
+          </div>
+          <div class="docs-body">
+            <div class="docs-type-tag">📄 Final Thesis — Phase 4</div>
+            <h3 class="docs-card-title">Final Report</h3>
+            <p class="docs-card-desc">Complete final thesis report including end-to-end system documentation, clinical validation results, performance evaluation, deployment architecture, and future research directions.</p>
+            <div class="docs-meta">
+              <span class="docs-meta-chip">📅 May 2026</span>
+              <span class="docs-meta-chip">👤 Individual</span>
+              <span class="docs-meta-chip">💾 5.8 MB</span>
+              <span class="docs-meta-chip">📑 PDF</span>
+            </div>
+            <a href="assets/documents/final-report.pdf" class="docs-download-btn" download>
+              📥 Download Document
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HIGHLIGHTS ===== -->
+  <section class="docs-section alt">
+    <div class="container">
+      <span class="section-label">Documentation Standards</span>
+      <h2 class="section-title">What's Inside Each Document</h2>
+      <p class="section-subtitle">Every deliverable follows academic standards with comprehensive research and technical detail.</p>
+
+      <div class="docs-highlights-grid">
+        <div class="docs-highlight-card">
+          <div class="docs-highlight-icon">🔬</div>
+          <h4>Literature Reviews</h4>
+          <p>Thorough analysis of existing urine microscopy methods, deep learning approaches, and identified research gaps with proper academic citations.</p>
+        </div>
+        <div class="docs-highlight-card">
+          <div class="docs-highlight-icon">📊</div>
+          <h4>Results & Analysis</h4>
+          <p>Detailed experimental results with confusion matrices, accuracy metrics, ROC curves, and comparative benchmarks against baseline models.</p>
+        </div>
+        <div class="docs-highlight-card">
+          <div class="docs-highlight-icon">🏗️</div>
+          <h4>System Architecture</h4>
+          <p>Complete technical documentation of the AI pipeline, from image acquisition and preprocessing through YOLO detection to classification output.</p>
+        </div>
+        <div class="docs-highlight-card">
+          <div class="docs-highlight-icon">📋</div>
+          <h4>IEEE Formatted</h4>
+          <p>All papers and reports follow IEEE formatting guidelines with proper citation styles, structured abstracts, and reproducible methodology sections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2024/25 Uro.AI Research Team — Sri Lanka Institute of Information Technology</p>
+        <div>
+          <div class="nav-logo" style="margin-bottom:8px;">
+            <img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img">
+          </div>
+          <p style="max-width:none;">© 2024/25 Uro.AI Research Team — Sri Lanka Institute of Information Technology</p>
+        </div>
         <div class="footer-links">
           <a href="domain.html">Research</a>
+          <a href="milestones.html">Milestones</a>
           <a href="documents.html">Documents</a>
           <a href="contact.html">Contact</a>
         </div>
