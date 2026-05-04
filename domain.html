@@ -4,10 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Research domain, literature survey, methodology, and technology stack for AI-Based Urine Microscopy Analysis.">
-  <title>Domain — UroAI Research</title>
+  <title>Domain — Uro.AI Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Domain page premium styles ── */
+
+    /* Hero */
+    .domain-hero {
+      padding: 140px 0 48px;
+      background: linear-gradient(135deg, #eef1f7 0%, #ede9f6 55%, #e8f4f8 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .domain-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(124,58,237,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .domain-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(0,151,167,0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .domain-hero .container { position: relative; z-index: 1; }
+    .domain-hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-main) 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .domain-hero p {
+      font-size: 1.1rem;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Stats bar */
+    .domain-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 0 auto 2.5rem;
+      max-width: 720px;
+      box-shadow: var(--shadow-card);
+    }
+    .domain-stat {
+      flex: 1;
+      padding: 22px 16px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .domain-stat:last-child { border-right: none; }
+    .domain-stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #7c3aed, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .domain-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .domain-hero { padding: 120px 0 40px; }
+      .domain-stats { flex-direction: column; max-width: 320px; }
+      .domain-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .domain-stat:last-child { border-bottom: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -24,7 +112,7 @@
         <a href="documents.html">Documents</a>
         <a href="presentations.html">Presentations</a>
         <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Contact</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -32,12 +120,32 @@
     </div>
   </nav>
 
-  <!-- ===== DOMAIN HEADER ===== -->
-  <header class="domain-header">
+  <!-- ===== DOMAIN HERO ===== -->
+  <header class="domain-hero">
     <div class="container">
       <span class="section-label">Research Domain</span>
       <h1>Research Domain</h1>
-      <p>Comprehensive research methodology and technological framework</p>
+      <p>Comprehensive research methodology, literature review, and technological framework driving our AI-based urine microscopy analysis system.</p>
+
+      <!-- Stats bar -->
+      <div class="domain-stats">
+        <div class="domain-stat">
+          <div class="domain-stat-number">6</div>
+          <div class="domain-stat-label">Research Areas</div>
+        </div>
+        <div class="domain-stat">
+          <div class="domain-stat-number">8</div>
+          <div class="domain-stat-label">Objectives</div>
+        </div>
+        <div class="domain-stat">
+          <div class="domain-stat-number">11</div>
+          <div class="domain-stat-label">Technologies</div>
+        </div>
+        <div class="domain-stat">
+          <div class="domain-stat-number">7</div>
+          <div class="domain-stat-label">Methodology Steps</div>
+        </div>
+      </div>
     </div>
 
     <!-- Tab Navigation -->
@@ -372,13 +480,32 @@
     </div>
   </section>
 
+  <!-- ===== CTA ===== -->
+  <section class="domain-section" style="padding: 56px 0; text-align: center; background: var(--bg-section);">
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom: 0.75rem;">Explore Related Resources</h2>
+      <p class="section-subtitle" style="margin: 0 auto 2rem;">Dive into the milestones, presentations, and documents from our research journey.</p>
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="milestones.html" class="btn btn-primary">📋 View Milestones</a>
+        <a href="presentations.html" class="btn btn-outline">📽️ Presentations</a>
+        <a href="documents.html" class="btn btn-outline">📄 Documents</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2024/25 UroAI Research Team — Sri Lanka Institute of Information Technology</p>
+        <div>
+          <div class="nav-logo" style="margin-bottom:8px;">
+            <img src="assets/logo.png" alt="Uro.AI Logo" class="logo-img">
+          </div>
+          <p style="max-width:none;">© 2024/25 Uro.AI Research Team — Sri Lanka Institute of Information Technology</p>
+        </div>
         <div class="footer-links">
           <a href="domain.html">Research</a>
+          <a href="milestones.html">Milestones</a>
           <a href="documents.html">Documents</a>
           <a href="contact.html">Contact</a>
         </div>
