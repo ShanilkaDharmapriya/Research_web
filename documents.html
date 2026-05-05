@@ -408,8 +408,7 @@
       <h1>Project Documents</h1>
       <p>Access and download all official research documents, reports, and academic deliverables from the Uro.AI project — from initial assessment through final thesis.</p>
       <div class="docs-hero-actions">
-        <a href="#" class="btn btn-primary" onclick="alert('Preparing documents archive...')">
-          📥 Download All Documents
+        <a href="#" class="btn btn-primary" id="downloadAllHero" onclick="downloadAllDocs(event)">          📥 Download All Documents
         </a>
         <a href="presentations.html" class="btn btn-outline">
           📊 View Presentations
@@ -487,7 +486,7 @@
           <h2 class="section-title">All Documents</h2>
           <p class="section-subtitle">Click any card to download the full document in PDF format.</p>
         </div>
-        <a href="#" class="btn btn-outline" onclick="alert('Preparing documents archive...')">
+        <a href="#" class="btn btn-outline" id="downloadAllSection" onclick="downloadAllDocs(event)">
           📦 Download All (.zip)
         </a>
       </div>
@@ -647,5 +646,55 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script>
+    const docFiles = [
+      { name: 'Topic-Assessment.pdf', url: 'assets/documents/topic-assessment.pdf' },
+      { name: 'Project-Proposal.pdf', url: 'assets/documents/project-proposal.pdf' },
+      { name: 'Research-Paper.pdf',   url: 'assets/documents/research-paper.pdf' },
+      { name: 'Final-Report.pdf',     url: 'assets/documents/final-report.pdf' }
+    ];
+
+    async function downloadAllDocs(e) {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '⏳ Preparing ZIP...';
+      btn.style.pointerEvents = 'none';
+      btn.style.opacity = '0.7';
+
+      try {
+        const zip = new JSZip();
+        const folder = zip.folder('UroAI-Documents');
+
+        const fetchPromises = docFiles.map(async (file) => {
+          const response = await fetch(file.url);
+          if (!response.ok) throw new Error('Failed to fetch ' + file.name);
+          const blob = await response.blob();
+          folder.file(file.name, blob);
+        });
+
+        await Promise.all(fetchPromises);
+
+        const zipBlob = await zip.generateAsync({
+          type: 'blob',
+          compression: 'DEFLATE',
+          compressionOptions: { level: 6 }
+        });
+
+        saveAs(zipBlob, 'UroAI-All-Documents.zip');
+        btn.innerHTML = '✅ Download Started!';
+        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+      } catch (err) {
+        console.error('ZIP error:', err);
+        btn.innerHTML = '❌ Download Failed';
+        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+      } finally {
+        btn.style.pointerEvents = '';
+        btn.style.opacity = '';
+      }
+    }
+  </script>
 </body>
 </html>

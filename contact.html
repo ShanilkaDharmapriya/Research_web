@@ -42,7 +42,10 @@
         <!-- Contact Form -->
         <div>
           <h3 style="margin-bottom:1.5rem;">Send a Message</h3>
-          <form id="contactForm">
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="0daf42af-75c5-4232-8081-df98e35d5a10">
+            <input type="hidden" name="subject" value="New Contact from Uro.AI Website">
+            <input type="checkbox" name="botcheck" style="display: none;">
             <div class="form-group">
               <label for="name">Full Name</label>
               <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -52,15 +55,16 @@
               <input type="email" id="email" name="email" placeholder="you@example.com" required>
             </div>
             <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="Message subject" required>
+              <label for="subject-field">Subject</label>
+              <input type="text" id="subject-field" name="subject" placeholder="Message subject" required>
             </div>
             <div class="form-group">
               <label for="message">Message</label>
               <textarea id="message" name="message" placeholder="Your message..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">📨 Send Message</button>
+            <button type="submit" id="submitBtn" class="btn btn-primary" style="width:100%; justify-content:center;">📨 Send Message</button>
           </form>
+          <div id="formToast" style="display:none; margin-top:16px; padding:14px 20px; border-radius:var(--radius-md); font-size:0.92rem; font-weight:500; text-align:center; transition: all 0.3s ease;"></div>
         </div>
 
         <!-- Contact Information -->
@@ -72,7 +76,7 @@
               <div class="contact-info-icon">📧</div>
               <div>
                 <h4>Email</h4>
-                <p><a href="mailto:Uro.AI@my.sliit.lk">Uro.AI@my.sliit.lk</a></p>
+                <p><a href="mailto:contact@uroai.lk">contact@uroai.lk</a></p>
               </div>
             </div>
 
@@ -121,5 +125,50 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    const form = document.getElementById('contactForm');
+    const toast = document.getElementById('formToast');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '⏳ Sending...';
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: json
+        });
+        const result = await response.json();
+
+        if (result.success) {
+          toast.style.display = 'block';
+          toast.style.background = 'rgba(56, 142, 60, 0.1)';
+          toast.style.color = '#388e3c';
+          toast.style.border = '1px solid rgba(56, 142, 60, 0.25)';
+          toast.textContent = '✅ Message sent successfully! We\'ll get back to you soon.';
+          form.reset();
+        } else {
+          throw new Error(result.message || 'Something went wrong');
+        }
+      } catch (error) {
+        toast.style.display = 'block';
+        toast.style.background = 'rgba(198, 40, 40, 0.1)';
+        toast.style.color = '#c62828';
+        toast.style.border = '1px solid rgba(198, 40, 40, 0.25)';
+        toast.textContent = '❌ Failed to send message. Please try again.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '📨 Send Message';
+        setTimeout(() => { toast.style.display = 'none'; }, 5000);
+      }
+    });
+  </script>
 </body>
 </html>

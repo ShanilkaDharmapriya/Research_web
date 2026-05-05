@@ -735,8 +735,8 @@ section {
 }
 
 .team-avatar-wrapper {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   margin: 0 auto 1.2rem;
   border-radius: 50%;
   padding: 4px;
@@ -744,7 +744,7 @@ section {
   overflow: hidden;
   position: relative;
   transition: all 0.4s ease;
-  box-shadow: 0 0 15px rgba(0, 188, 212, 0.3);
+  box-shadow: 0 0 20px rgba(0, 188, 212, 0.35);
 }
 
 .team-card:hover .team-avatar-wrapper {
